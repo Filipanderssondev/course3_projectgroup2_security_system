@@ -5,7 +5,7 @@ Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](http
 ![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/SAF.png)
 ## [Github Repo](https://github.com/Filipanderssondev/course3_projectgroup2_security_system)
 
-## [Kanban Board](https://github.com/users/alexanderchasacademy/projects/5/views/1)
+## [Kanban Board](https://github.com/users/Filipanderssondev/projects/6)
 
 ## [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)   
 Links that we have used during the construction of our prototype
