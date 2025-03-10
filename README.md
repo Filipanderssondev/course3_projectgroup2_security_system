@@ -1,7 +1,8 @@
 # "SAFE - Security system"   
 Assignment to summarize our third course and prepare for the next.  
-Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)
+Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
 
+![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/SAF.png)
 ## [Github Repo](https://github.com/Filipanderssondev/course3_projectgroup2_security_system)
 
 ## [Kanban Board](https://github.com/users/alexanderchasacademy/projects/5/views/1)
