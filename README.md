@@ -1,11 +1,13 @@
-# Course 3 Project group 2: "SAFE Securitysystem"
+# "ASFJJ Securitysystem"   
+Assignment to summarize our third course and prepare for the next.  
 Group members: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)
 
-## Repo: [Github Repo](https://github.com/Filipanderssondev/course3_projectgroup2_security_system)
+## [Github Repo](https://github.com/Filipanderssondev/course3_projectgroup2_security_system)
 
-## Kanban: [Kanban Board](https://github.com/users/alexanderchasacademy/projects/5/views/1)
+## [Kanban Board](https://github.com/users/alexanderchasacademy/projects/5/views/1)
 
-## TinkerCAD: [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)
+## [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)   
+Links that we have used during the construction of our prototype
 
 ### Project assignment:  
 An alarm that uses an infrared sensor to discover movements. The alarm uses the following:   
