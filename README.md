@@ -1,4 +1,4 @@
-# Course 3 Project group 2: "AFSJJ Safetysystem"
+# Course 3 Project group 2: "SAFE Securitysystem"
 Group members: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)
 
 ## Repo: https://github.com/Filipanderssondev/course3_projectgroup2_security_system
