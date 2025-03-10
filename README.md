@@ -1,9 +1,9 @@
 # Course 3 Project group 2: "AFSJJ Safetysystem"
-Group members: Alexander, Filip, Sabina, Jacob, Johan
+Group members: @alexanderchasacademy, @Filipanderssondev, @binasime, @jalis00, @bubba-94
 
-## Repo:https://github.com/Filipanderssondev/course3_projectgroup2_security_system
+## Repo: https://github.com/Filipanderssondev/course3_projectgroup2_security_system
 
-## Kanban:https://github.com/users/alexanderchasacademy/projects/5/views/1
+## Kanban: https://github.com/users/alexanderchasacademy/projects/5/views/1
 
 ### Project assignment:  
 An alarm that uses an infrared sensor to discover movements. The alarm uses the following:   
