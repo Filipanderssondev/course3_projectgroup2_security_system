@@ -1,4 +1,5 @@
 # "SAFE - Security system"   
+Project Group 2 - Course 3
 Assignment to summarize our third course and prepare for the next.  
 Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
 
@@ -10,14 +11,13 @@ Links that we have used during the construction of our prototype
 ## [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)   
 
 ### Project assignment:  
-An alarm that uses an infrared sensor to discover movements. The alarm uses the following:   
-An infrared motion sensor.  
-Two summer to signal the alarm when motion is detected, alarm goes on/off, and a password is needed to shut of the alarm.    
-An LCD display that outputs the state of the alarm(on/off), and if the password is denied or accepted.    
-An RGB-LED that switches between green(when the alarm is off) and red(when the alarm is on).  
-Four push buttons that is being used as password input.  
+A security alarm that uses an infrared sensor to detect motion. The alarm uses the following components:   
+* An infrared motion sensor.  
+* Two buzzer to signal when motion is detected by PIR sensor, when the alarm is activated, a pushbutton resets the alarm.    
+* An LCD display that outputs the current status of the alarm(on/off/alarm activated).
+* An RGB-LED that switches between green(when the alarm is off) and red(when the alarm is on).
 
-### Instructions:  
+### Instructions:
 
 ### Components: 
 One Arduino Uno R4 Wifi or other compatible controller
@@ -25,7 +25,7 @@ One Breadboard
 One Peizo buzzer    
 One LCD display  
 One HC-SR501 infrared sensor  
-Four Pushbuttons  
+One Pushbutton  
 One RGB-LED  
 
 ### Potential extensions (if time and resources are available):  
