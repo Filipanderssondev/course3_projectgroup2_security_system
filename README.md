@@ -1,6 +1,6 @@
 # "ASFJJ Securitysystem"   
 Assignment to summarize our third course and prepare for the next.  
-Group members: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)
+Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)
 
 ## [Github Repo](https://github.com/Filipanderssondev/course3_projectgroup2_security_system)
 
