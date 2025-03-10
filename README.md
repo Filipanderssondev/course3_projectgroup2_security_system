@@ -5,7 +5,7 @@ Group members: [Alexander](https://github.com/alexanderchasacademy), [Filip](htt
 
 ## Kanban: [Kanban Board](https://github.com/users/alexanderchasacademy/projects/5/views/1)
 
-## TinkerCAD: [TinkerCAD sketch] (https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)
+## TinkerCAD: [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)
 
 ### Project assignment:  
 An alarm that uses an infrared sensor to discover movements. The alarm uses the following:   
