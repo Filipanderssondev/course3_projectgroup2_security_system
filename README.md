@@ -1,7 +1,7 @@
 # "SAFE - Security system"   
 Project Group 2 - Course 3
 Assignment to summarize our third course and prepare for the next.  
-Contributors: [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev), [Sabina](https://github.com/binasime), [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
+Contributors: [Sabina](https://github.com/binasime), [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev),  [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
 
 ![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/SAF.png)  
 
@@ -11,28 +11,34 @@ Links that we have used during the construction of our prototype
 ## [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)   
 
 ### Project assignment:  
-A security alarm that uses an infrared sensor to detect motion. The alarm uses the following components:   
-* An infrared motion sensor.  
-* Two buzzer to signal when motion is detected by PIR sensor, when the alarm is activated, a pushbutton resets the alarm.    
-* An LCD display that outputs the current status of the alarm(on/off/alarm activated).
-* An RGB-LED that switches between green(when the alarm is off) and red(when the alarm is on).
+Develop a security alarm system that detects motion using an infrared sensor. The alarm system consists of the following components:   
+* Infrared motion sensor - detects movement.  
+* One buzzer - signals when motion is detected and when the alarm is activated.
+* Pushbutton - resets the alarm.    
+* LCD display - outputs the current alarm status (on/off/alarm triggered).
+* RGB-LED - indicates system status: Green = alarm is off and red = alarm is on.
 
 ### Instructions:
+1. Connect the hardware.
+2. Program using C/C++.
+3. Create a circuit diagram.
+4. Write a user manual.
 
 ### Components: 
 One Arduino Uno R4 Wifi or other compatible controller
 One Breadboard 
 One Peizo buzzer    
-One LCD display  
+One LCD display I2C
 One HC-SR501 infrared sensor  
 One Pushbutton  
 One RGB-LED  
 
 ### Potential extensions (if time and resources are available):  
 
-Replace pushbuttons with combination component.  
-Possibility as an admin to change the personal password.  
-Introduce the usage of a servo component.  
-Exapand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
+* Replace pushbuttons with a keypad for code entry.  
+* Enable admin access to change the personal password.  
+* Introduce the usage of a servo component.  
+* Exapand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
 
 ### Safety requirements:  
+(To be defined based on project scope and implementation)
