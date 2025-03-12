@@ -19,16 +19,16 @@ Develop a security alarm system that detects motion using an infrared sensor. Th
 * RGB-LED - indicates system status: Green = alarm is off and red = alarm is on.
 
 ### Instructions:
-1. Connect the hardware.
-2. Program using C/C++.
-3. Create a circuit diagram.
-4. Write a user manual.
+1. Connect the hardware. (link connect.md)
+2. Program using C/C++. (link placeholder.ino)
+3. Create a circuit diagram. (link diagram.png)
+4. Write a user manual. (link manual.md)
 
 ### Components: 
 One Arduino Uno R4 Wifi or other compatible controller
 One Breadboard 
 One Peizo buzzer    
-One LCD display I2C
+One LCD display
 One HC-SR501 infrared sensor  
 One Pushbutton  
 One RGB-LED  
@@ -38,7 +38,7 @@ One RGB-LED
 * Replace pushbuttons with a keypad for code entry.  
 * Enable admin access to change the personal password.  
 * Introduce the usage of a servo component.  
-* Exapand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
+* Expand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
 
 ### Safety requirements:  
 (To be defined based on project scope and implementation)
