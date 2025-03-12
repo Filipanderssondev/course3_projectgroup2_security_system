@@ -1,7 +1,8 @@
 # Official Naming Conventions of This Project
 
 ## Variable List  
-We use the `camelCase` naming convention for general variables. Constants should be named with **CAPITAL** letters:  
+We use the `camelCase` naming convention for general variables. 
+Constants should be named with **CAPITAL** letters:  
 
 ### Preset Variables  
 `{number} = pin slot`  
@@ -19,6 +20,7 @@ int powerOnTune: tune for when the system is turned on.
 int powerOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.
 ```
+
 ### Function list: 
 ```cpp
 void
@@ -35,7 +37,7 @@ void alarmDeactivated();
 ### Function explanations:
 ```cpp
 readPirSensor().
-Updates the value of sensorState through 
+Updates the value of sensorState through digitalRead(PIR_SENSOR).
 
 writeToLCD(const char* LCDMessage).
 The content of the parameter passed into the function is printed on the LCD display using the LiquidCrystal class’ print() method.
@@ -54,5 +56,5 @@ Invoke the tune() function with alarmTune as frequency, enters a loop until alar
 
 alarmDeactivated()
 Waits for buttonState to record a change in the state of the BUTTON, thereafter proceed with breaking out of the loop caused by alarmRinging(), followed immediately by invoking noTune(BUZZER) to turn off the alarm. 
-Also informs the user by invoking both writeToLCD() and writeToSerialMonitor to tell them thar the alarm has been deactivated.
+Also informs the user by invoking both writeToLCD() and writeToSerialMonitor to tell them that the alarm has been deactivated.
 ```
