@@ -3,7 +3,7 @@ Project Group 2 - Course 3
 Assignment to summarize our third course and prepare for the next.  
 Contributors: [Sabina](https://github.com/binasime), [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev),  [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
 
-![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/SAF.png)  
+![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/SAF.png)  
 
 Links that we have used during the construction of our prototype
 ## [Kanban Board](https://github.com/users/Filipanderssondev/projects/6)
