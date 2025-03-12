@@ -20,18 +20,18 @@ Develop a security alarm system that detects motion using an infrared sensor. Th
 
 ### Instructions:
 1. Connect the hardware. (link connect.md)
-2. Program using C/C++. (link placeholder.ino)
+2. Program using **C/C++**. (link placeholder.ino)
 3. Create a circuit diagram. (link diagram.png)
 4. Write a user manual. (link manual.md)
 
 ### Components: 
-One Arduino Uno R4 Wifi or other compatible controller
-One Breadboard 
-One Peizo buzzer    
-One LCD display
-One HC-SR501 infrared sensor  
-One Pushbutton  
-One RGB-LED  
+* One ***Arduino Uno R4 Wifi*** or other compatible controller  
+* One ***Breadboard***   
+* One ***Peizo buzzer***      
+* One ***LCD display***
+* One ***HC-SR501*** infrared sensor  
+* One ***pushbutton***  
+* One ***RGB-LED***  
 
 ### Potential extensions (if time and resources are available):  
 
