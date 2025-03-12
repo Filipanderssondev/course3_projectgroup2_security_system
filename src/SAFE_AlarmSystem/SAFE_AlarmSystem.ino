@@ -16,6 +16,14 @@ int sensorState;
 int buttonState; 
 
 
+void writeToLCD(const char* LCDMessage) 
+{
+
+  LCD.clear();
+  LCD.print(LCDMessage);
+}
+
+
 void setup()
 {
   pinMode(LED_BUILTIN, OUTPUT);
