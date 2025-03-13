@@ -16,8 +16,8 @@ const int PIR_SENSOR {6};
 const int RED_LED {7};
 const int GREEN_LED {8};
 
-int sensorState: Stores the read value from the PIR_SENSOR.
-int buttonState: Stores the read value from BUTTON.
+bool sensorState: Stores boolean value from the PIR_SENSOR.
+bool buttonState: Stores boolean value from BUTTON.
 int powerOnTune: tune for when the system is turned on.
 int powerOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.

@@ -10,15 +10,15 @@ const int BUTTON = 10;
 const int PIR_SENSOR = 6;
 const int RED_LED = 7;
 const int GREEN_LED = 8; 
-
-// Variables for containing the value from a reading.
-int sensorState;
-int buttonState;
-
-// Frequency for alarm
+// Frequency of the alarm tune
 int alarmTune = 700;
 
-// Function for updating the PIR Sensor value
+// Variables for containing the value from a reading.
+bool sensorState;
+bool buttonState;
+
+// Function declarations
+void writeToLCD(const char* LCDMessage);
 void readPirSensor();
 
 void setup()
@@ -33,6 +33,13 @@ void loop()
   delay(1000); // Wait for 1000 millisecond(s)
   digitalWrite(LED_BUILTIN, LOW);
   delay(1000); // Wait for 1000 millisecond(s)
+}
+
+// Function definitions 
+void writeToLCD(const char* LCDMessage)
+{
+  LCD.clear();
+  LCD.print(LCDMessage);
 }
 
 void readPirSensor()
