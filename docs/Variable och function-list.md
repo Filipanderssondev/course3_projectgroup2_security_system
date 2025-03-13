@@ -1,8 +1,10 @@
-# Official Naming Conventions of This Project
+# Official naming conventions of current project
 
-## Variable List  
-We use the `camelCase` naming convention for general variables. 
+### Variable List  
+We use the `camelCase` naming convention for general variables.   
 Constants should be named with **CAPITAL** letters:  
+Initialization of variables/functions should be located **before** the running code (with commenting if need be).  
+Definitions of variables/functions should be located **after** the running code.  
 
 ### Preset Variables  
 `{number} = pin slot`  
