@@ -10,8 +10,11 @@ const int BUTTON = 10;
 const int PIR_SENSOR = 6;
 const int RED_LED = 7;
 const int GREEN_LED = 8; 
-// Frequency of the alarm tune
+
+// Frequencies for diffrent tunes  
 int alarmTune = 700;
+int powerOffTune = 75;
+int powerOnTune = 500;
 
 // Variables for containing the value from a reading.
 bool sensorState;
