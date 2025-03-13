@@ -21,6 +21,7 @@ int buttonState: Stores the read value from BUTTON.
 int powerOnTune: tune for when the system is turned on.
 int powerOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.
+int buttonPressTune: Tune for when a push-button or 4x4 button is pressed.
 ```
 
 ### Function list: 
