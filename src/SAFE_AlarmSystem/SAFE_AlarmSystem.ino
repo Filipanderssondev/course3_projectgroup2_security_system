@@ -1,31 +1,29 @@
-// C++ code
 
-//library for the LiquidCrystal class, required
-//to use LCD.
+
+// Library for the LiquidCrystal class, required
+// to use LCD.
 #include <LiquidCrystal.H>
 
-//Variables for components connected to arduino.
+// Variables for components connected to arduino.
 const int BUZZER = 9;
 const int BUTTON = 10;
 const int PIR_SENSOR = 6;
 const int RED_LED = 7;
 const int GREEN_LED = 8; 
 
-//Variables for containing the value from a reading.
+// Variables for containing the value from a reading.
 int sensorState;
-int buttonState; 
+int buttonState;
 
+// Frequency for alarm
+int alarmTune = 700;
 
-void writeToLCD(const char* LCDMessage) 
-{
-
-  LCD.clear();
-  LCD.print(LCDMessage);
-}
-
+// Function for updating the PIR Sensor value
+void readPirSensor();
 
 void setup()
 {
+  pinMode(BUZZER, INPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
@@ -35,4 +33,9 @@ void loop()
   delay(1000); // Wait for 1000 millisecond(s)
   digitalWrite(LED_BUILTIN, LOW);
   delay(1000); // Wait for 1000 millisecond(s)
+}
+
+void readPirSensor()
+{
+  sensorState = digitalRead(PIR_SENSOR);
 }
