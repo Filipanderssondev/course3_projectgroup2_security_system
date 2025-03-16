@@ -1,5 +1,3 @@
-
-
 // Library for the LiquidCrystal class, required
 // to use LCD.
 #include <LiquidCrystal.H>
@@ -15,6 +13,11 @@ const int GREEN_LED = 8;
 int alarmTune = 700;
 int powerOffTune = 75;
 int powerOnTune = 500;
+int buttonPressTune = 600;
+int buttonDebounce = 50;
+
+// Variables for timestamps
+unsigned long lastButtonPress;
 
 // Variables for containing the value from a reading.
 bool sensorState;
