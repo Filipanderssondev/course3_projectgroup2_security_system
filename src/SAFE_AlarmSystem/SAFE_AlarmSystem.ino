@@ -1,5 +1,3 @@
-
-
 // Library for the LiquidCrystal class, required
 // to use LCD.
 #include <LiquidCrystal.h>
@@ -26,6 +24,13 @@ bool buttonState = false;
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
 const unsigned long buttonDebounce = 50; // Debounce time
+
+// Variable for tracking if alarm is active
+bool alarmActive = false;
+
+// Timer variables for alarm loop (previous blocked)
+unsigned long lastAlarmCheck = 0;
+const unsigned long alarmInterval = 100; // ms between alarmchecks
 
 // Function declarations
 void writeToLCD(const char* LCDMessage);
@@ -55,15 +60,23 @@ void loop()
 {
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
-  
-  Serial.print("Button state: ");
-  Serial.println(buttonState ? "PRESSED" : "NOT PRESSED");
 
-  delay(500); 
-  
-  if (sensorState) { // If motion is detected
-    Serial.println("Motion detected! Starting alarm...");
-    alarmRinging();  // Trigger the alarm
+  // If motion is detected and alarm is not active
+  if (sensorState && !alarmActive) {
+    alarmRinging(); // Trigger the alarm
+  }
+
+  // Non-blocking check for deactivating alarm
+  if (alarmActive) {
+    if (millis() - lastAlarmCheck >= alarmInterval) {
+      lastAlarmCheck = millis(); // Update timer
+      checkButtonState(); // Check if button is pressed
+
+      if (buttonState) {
+        alarmDeactivated(); // Stop alarm if button pressed
+        alarmActive = false; // Reset alarm status
+      }
+    }
   }
 
   // update LED logic to use red and green led?
@@ -74,13 +87,16 @@ void loop()
 }
 
 // Function definitions 
+
 void writeToLCD(const char* LCDMessage, int row)
 {
-  // Sets cursor for centralized text
-  // LCD.clear(); I (Sabina) have to read more about how to construct LCD output
   int textLength = strlen(LCDMessage);
   int padding = (16 - textLength) / 2;
+  
+  if (padding < 0) padding = 0;
 
+  LCD.setCursor(0, row); 
+  LCD.print("                ");
   LCD.setCursor(padding, row); 
   LCD.print(LCDMessage);
 }
@@ -91,29 +107,13 @@ void readPirSensor()
 
 void alarmRinging()
 {
-  // Reference the variable and function list to implement function
-  if (sensorState) { // If motion detected, enter the function
-    buttonState = false; // Reset buttonState to false
-
-    // Use both of the writeTo functions to inform the user that the alarm has detected something 
-    writeToLCD("Alarm: Intruder!", 0); // Shorter message for LCD
-    Serial.println("Alarm triggered, Motion detected!"); // Message displayed in Serial monitor
-
-    // Invoke the tone() function with no set duration
-    tone(BUZZER, alarmTune); // Start the alarm sound with no set duration
-
-    // Eternal loop for checking button state
-    while (true) 
-    {
-      // Invoke checkButtonState inside the loop
-      checkButtonState();
-
-      // If buttonState returns true, invoke alarmDeactivated()
-      if (buttonState) {
-        alarmDeactivated();
-        break;
-      }
-    }
+  // If alarm is not already active, trigger it
+  if (!alarmActive) {
+    alarmActive = true; // Mark alarm as active
+    tone(BUZZER, alarmTune); // Start buzzer sound
+    LCD.clear();
+    writeToLCD("Alarm: Intruder!", 0); // Notify user
+    Serial.println("Alarm triggered, Motion detected!");
   }
 }
 
@@ -140,7 +140,14 @@ void alarmDeactivated()
 {
   if (buttonState) { // If buttonState is true, enter the function
     noTone(BUZZER); // Stop the buzzer
-    writeToLCD("Alarm deactivated.", 0); // add clear output
+    //LCD.clear();
+    //writeToLCD("Alarm deactivated.", 0); // add clear output
+    //LCD.clear();
+	//LCD.setCursor(0, 0);
+	//LCD.print("Alarm deactivated.");
+    writeToLCD("Alarm", 0);
+	writeToLCD("deactivated", 1);
+
     Serial.println("Alarm deactivated.");
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
