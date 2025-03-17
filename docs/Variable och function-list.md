@@ -6,7 +6,7 @@ Constants should be named with **CAPITAL** letters:
 Initialization of variables/functions should be located **before** the running code (with commenting if need be).  
 Definitions of variables/functions should be located **after** the running code.  
 
-### Preset Variables  
+### Variable list:    
 `{number} = pin slot`  
 
 ```cpp
@@ -18,6 +18,7 @@ const int GREEN_LED {8};
 
 bool sensorState: Stores boolean value from the PIR_SENSOR.
 bool buttonState: Stores boolean value from BUTTON.
+bool doItOnce: Evaluates ......
 int powerOnTune: tune for when the system is turned on.
 int powerOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.
