@@ -24,6 +24,7 @@ bool sensorState;
 bool buttonState;
 
 // Function declarations
+void switchLED(int pinSlot); // pinSlot as parameter too set that slot as HIGH / ON
 void writeToLCD(const char* LCDMessage);
 void readPirSensor();
 
@@ -51,4 +52,22 @@ void writeToLCD(const char* LCDMessage)
 void readPirSensor()
 {
   sensorState = digitalRead(PIR_SENSOR);
+}
+
+void switchLED(int pinSlot)
+{
+  if (pinSlot == GREEN_LED)
+  {
+    digitalWrite(RED_LED, LOW);
+    digitalWrite(GREEN_LED, HIGH);
+  }
+  else if (pinSlot == RED_LED)
+  {
+    digitalWrite(GREEN_LED, LOW);
+    digitalWrite(RED_LED, HIGH);
+  }
+  else 
+  {
+    Serial.println("Wrong pin slot determined.");
+  }
 }
