@@ -18,6 +18,7 @@ const int GREEN_LED {8};
 
 bool sensorState: Stores boolean value from the PIR_SENSOR.
 bool buttonState: Stores boolean value from BUTTON.
+bool buttonRead // Evaluates the buttonState
 bool doItOnce: Evaluates ......
 int powerOnTune: tune for when the system is turned on.
 int powerOffTune: tune for when the system is turned off.
