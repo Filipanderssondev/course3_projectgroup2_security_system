@@ -14,21 +14,18 @@ const int GREEN_LED = 8;
 
 // Frequencies for diffrent tunes  
 int alarmTune = 700;
-int powerOffTune = 75;
-int powerOnTune = 500;
+int alarmModeOffTune = 75;
+int alarmModeOnTune = 500;
 int buttonPressTune = 600;
-int buttonDebounce = 50;
-
-// Variables for timestamps
-unsigned long lastButtonPress;
 
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
+bool buttonRead;
 
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
-const unsigned long buttonDebounce = 50; // Debounce time
+const unsigned long buttonDebounce = 100; // Debounce time
 
 // Variable for tracking if alarm is active
 bool alarmActive = false;
@@ -39,7 +36,7 @@ const unsigned long alarmInterval = 100; // ms between alarmchecks
 
 // Function declarations
 void switchLED(int pinSlot); // pinSlot as parameter too set that slot as HIGH / ON
-void writeToLCD(const char* LCDMessage);
+void writeToLCD(const char* LCDMessage, int row);
 void readPirSensor();
 void alarmDeactivated();
 void alarmRinging();
@@ -72,24 +69,6 @@ void loop()
     alarmRinging(); // Trigger the alarm
   }
 
-  // Non-blocking check for deactivating alarm
-  if (alarmActive) {
-    if (millis() - lastAlarmCheck >= alarmInterval) {
-      lastAlarmCheck = millis(); // Update timer
-      checkButtonState(); // Check if button is pressed
-
-      if (buttonState) {
-        alarmDeactivated(); // Stop alarm if button pressed
-        alarmActive = false; // Reset alarm status
-      }
-    }
-  }
-
-  // update LED logic to use red and green led?
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
 }
 
 // Function definitions 
@@ -136,22 +115,40 @@ void alarmRinging()
     LCD.clear();
     writeToLCD("Alarm: Intruder!", 0); // Notify user
     Serial.println("Alarm triggered, Motion detected!");
+
+    //Enter a eternal loop
+    while (true)
+    {
+
+      // Non-blocking check for deactivating alarm
+    if (alarmActive) {
+      if (millis() - lastAlarmCheck >= alarmInterval) {
+        lastAlarmCheck = millis(); // Update timer
+        checkButtonState(); // Check if button is pressed
+
+      if (buttonState) {
+          alarmActive = false; // Reset alarm status
+          alarmDeactivated(); // Stop alarm if button pressed
+      }
+    }
+  }
+    }
   }
 }
 
 void checkButtonState()
 {
-  bool buttonRead = digitalRead(BUTTON); // Read button state
+  buttonRead = digitalRead(BUTTON); // Read button state
 
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
-    if (millis() - lastButtonPress > buttonDebounce) { // Debounce check
+    if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
       buttonState = true; // Update state
       lastButtonPress = millis();
       Serial.println("Button Pressed!");
     }
   }
   if (buttonRead == LOW && buttonState) { // If button released
-    if (millis() - lastButtonPress > buttonDebounce) { // Debounce check
+    if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
       buttonState = false; // Mark button as released
       Serial.println("Button Released!");
     }
@@ -174,5 +171,6 @@ void alarmDeactivated()
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
 
+    break;
   }
 }
