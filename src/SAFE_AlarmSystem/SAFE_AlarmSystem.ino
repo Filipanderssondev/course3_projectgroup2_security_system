@@ -21,7 +21,7 @@ int buttonPressTune = 600;
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
-bool buttonRead;
+bool buttonRead; //variable used for the logic of checkButtonState
 
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
@@ -47,7 +47,8 @@ void setup()
   Serial.begin(9600);
   
   pinMode(BUZZER, OUTPUT);
-  pinMode(LED_BUILTIN, OUTPUT); // Replace with RGB LED (RED_LED, OUTPUT and GREEN_LED, OUTPUT)
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT); 
   pinMode(BUTTON, INPUT);
   pinMode (PIR_SENSOR, INPUT);
 
@@ -85,6 +86,7 @@ void writeToLCD(const char* LCDMessage, int row)
   LCD.setCursor(padding, row); 
   LCD.print(LCDMessage);
 }
+
 void readPirSensor()
 {
   sensorState = digitalRead(PIR_SENSOR);
@@ -105,6 +107,7 @@ void switchLED(int pinSlot)
   else 
   {
     Serial.println("Wrong pin slot determined.");
+  }
 
 void alarmRinging()
 {
@@ -129,6 +132,7 @@ void alarmRinging()
       if (buttonState) {
           alarmActive = false; // Reset alarm status
           alarmDeactivated(); // Stop alarm if button pressed
+          break;
       }
     }
   }
@@ -139,6 +143,12 @@ void alarmRinging()
 void checkButtonState()
 {
   buttonRead = digitalRead(BUTTON); // Read button state
+
+  if (buttonRead == HIGH) //Make a beep if the button is pressed.
+  {
+      tone(BUZZER, buttonPressTune, 150) //make a sound for 150 ms.
+  }
+
 
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
     if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
@@ -171,6 +181,5 @@ void alarmDeactivated()
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
 
-    break;
   }
 }
