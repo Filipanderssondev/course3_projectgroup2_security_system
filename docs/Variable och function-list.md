@@ -31,9 +31,9 @@ void
 void readPirSensor();
 void writeToLCD(const char* LCDMessage);
 void writeToSerialMonitor(const char* SerialMessage);
-void alarmPowerOff();
-void alarmPowerOn();
-void alarmRinging();
+void alarmModeOn();
+void alarmModeOff();
+void alarmActivated();
 void alarmDeactivated();
 
 ```
@@ -49,13 +49,13 @@ The content of the parameter passed into the function is printed on the LCD disp
 writeToSerialMonitor(const char* SerialMessage).
 The content of the parameter passed into the function is printed on the Serial monitor using the Serial objects. print() method.
 
-alarmPowerOff().
-Power off the alarm when the button is pressed whilst the alarm is powered on.
+alarmModeOn().
+The Alarm is standing by and mnonitoring (its on and searching for motion)
 
-alarmPowerOn().
-Power on the alarm when the button is pressed whilst the alarm is powered off.
+alarmModeOff().
+The Alarm is not standing by and monitoring (its off and not searching for motion)
 
-alarmRinging().
+alarmActivated().
 Invoke the tune() function with alarmTune as frequency, enters a loop until alarmDeactivated() is invoked by pressing the button while in the loop.
 
 alarmDeactivated()
