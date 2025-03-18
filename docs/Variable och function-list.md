@@ -53,7 +53,7 @@ Depending on the pinSlot parameter, turns on/off RED_LED and GREEN_LED.
 if the parameter is GREEN_LED, turns on GREEN_LED and turns off RED_LED and vice versa. 
 
 blinkingLED().
-Makes the RED_LED blink roughly every half second. 
+Makes the RED_LED blink roughly every half second. Used in the alarmRinging() function.
 
 readPirSensor().
 Updates the value of sensorState through digitalRead(PIR_SENSOR).
