@@ -178,6 +178,7 @@ void alarmDeactivated()
   }
 }
 
+// Probably need some rework?
 void alarmModeOn()
 {
     // Run this block once every time function alarmModeOn() is called.
@@ -186,11 +187,13 @@ void alarmModeOn()
     {
       buttonState = false; 
       switchLED(RED_LED); // Turn on red led.
-      writeToLCD("ALARM", 0, true); // Clear and write new message
+      writeToLCD("SAFE ALARM SYSTEM IS", 0, true); // Clear and write new message
       writeToLCD("ON", 1, false);
       Serial.println("ALARM IS ON! Searching....");
       doItOnce = false;
     }
+    
+    checkButtonState();
 
     if (buttonState)
     {
