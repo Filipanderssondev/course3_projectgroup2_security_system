@@ -26,11 +26,16 @@ int alarmModeOnTune: tune for when the system is turned on.
 int alarmModeOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.
 int buttonPressTune: Tune for when a push-button or 4x4 button is pressed. 
+
+unsigned long lastButtonPress = 0: // Store last press time
+const unsigned long buttonDebounce = 100: // Debounce time
+unsigned lastLEDBlink: //Store last blink of the Red LED.
 ```
 
 ### Function list: 
 ```cpp
-void
+void switchLED(int pinSlot);
+void blinkingLED();
 void readPirSensor();
 void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false);
 void writeToSerialMonitor(const char* SerialMessage);
@@ -43,6 +48,13 @@ void alarmDeactivated();
 
 ### Function explanations:
 ```cpp
+switchLED(int pinSlot).
+Depending on the pinSlot parameter, turns on/off RED_LED and GREEN_LED.
+if the parameter is GREEN_LED, turns on GREEN_LED and turns off RED_LED and vice versa. 
+
+blinkingLED().
+Makes the RED_LED blink roughly every half second. 
+
 readPirSensor().
 Updates the value of sensorState through digitalRead(PIR_SENSOR).
 

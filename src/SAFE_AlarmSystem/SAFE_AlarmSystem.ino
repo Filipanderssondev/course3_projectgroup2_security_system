@@ -28,6 +28,8 @@ bool clearDisplay; //Determine whether or not to wipe the LCD screen before prin
 unsigned long lastButtonPress = 0; // Store last press time
 const unsigned long buttonDebounce = 100; // Debounce time
 
+unsigned lastLEDBlink = 0;
+
 // Variable for tracking if alarm is active
 bool alarmActive = false;
 
@@ -37,6 +39,7 @@ bool alarmActive = false;
 
 // Function declarations
 void switchLED(int pinSlot); // pinSlot as parameter too set that slot as HIGH / ON
+void blinkingLED();
 void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false);
 void readPirSensor();
 void alarmDeactivated();
@@ -120,6 +123,18 @@ void switchLED(int pinSlot)
   }
 }
 
+void blinkingLED()
+{
+
+  if (millis() - lastLEDBlink >= 500)
+  {
+
+      digitalWrite(RED_LED, !digitalRead(RED_LED));
+      lastLEDBlink = millis();
+  }
+
+}
+
 void alarmRinging()
 {
   // If alarm is not already active, trigger it
@@ -134,7 +149,7 @@ void alarmRinging()
     while (alarmActive)
     {
 
-      digitalWrite(RED_LED, millis() / 500 % 2); //LED blinking every 500 ms.
+      blinkingLED(); //LED blinking every 500 ms.
 
       // Non-blocking check for deactivating alarm
     //if (alarmActive) {
