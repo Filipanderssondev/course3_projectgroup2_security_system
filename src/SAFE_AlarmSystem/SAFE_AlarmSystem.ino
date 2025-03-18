@@ -126,7 +126,7 @@ void switchLED(int pinSlot)
 void blinkingLED()
 {
 
-  if (millis() - lastLEDBlink >= 500)
+  if (millis() - lastLEDBlink >= 200)
   {
 
       digitalWrite(RED_LED, !digitalRead(RED_LED));
