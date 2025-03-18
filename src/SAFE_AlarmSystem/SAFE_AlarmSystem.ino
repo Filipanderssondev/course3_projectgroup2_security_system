@@ -159,7 +159,7 @@ void checkButtonState()
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
     if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
 
-      tone(BUZZER, buttonPressTune, 150); //make a sound for 150 ms.
+      tone(BUZZER, buttonPressTune, 20); //make a sound for 150 ms.
       buttonState = true; // Update state
       lastButtonPress = millis();
       Serial.println("Button Pressed!");
