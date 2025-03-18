@@ -25,7 +25,7 @@ unsigned long lastButtonPress;
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
-
+bool doItOnce; 
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
 const unsigned long buttonDebounce = 50; // Debounce time
@@ -44,6 +44,7 @@ void readPirSensor();
 void alarmDeactivated();
 void alarmRinging();
 void checkButtonState();
+void alarmModeOn();
 
 void setup()
 {
@@ -165,14 +166,35 @@ void alarmDeactivated()
     //LCD.clear();
     //writeToLCD("Alarm deactivated.", 0); // add clear output
     //LCD.clear();
-	//LCD.setCursor(0, 0);
-	//LCD.print("Alarm deactivated.");
+	  //LCD.setCursor(0, 0);
+	  //LCD.print("Alarm deactivated.");
     writeToLCD("Alarm", 0);
-	writeToLCD("deactivated", 1);
+	  writeToLCD("deactivated", 1);
 
     Serial.println("Alarm deactivated.");
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
 
   }
+}
+
+void alarmModeOn()
+{
+    // Run this block once every time function alarmModeOn() is called.
+    // Initialize doItOnce in setup() as true?
+    if (doItOnce == true)
+    {
+      buttonState = false; 
+      switchLED(RED_LED); // Turn on red led.
+      writeToLCD("ALARM", 0, true); // Clear and write new message
+      writeToLCD("ON", 1, false);
+      Serial.println("ALARM IS ON! Searching....");
+      doItOnce = false;
+    }
+
+    if (buttonState)
+    {
+      doItOnce = true;
+      alarmPowerOff();
+    }
 }
