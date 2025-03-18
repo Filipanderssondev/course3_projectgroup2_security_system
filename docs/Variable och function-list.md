@@ -19,9 +19,11 @@ const int GREEN_LED {8};
 bool sensorState: Stores boolean value from the PIR_SENSOR.
 bool buttonState: Stores boolean value from BUTTON.
 bool buttonRead // Evaluates the buttonState
-bool doItOnce: Evaluates ......
-int powerOnTune: tune for when the system is turned on.
-int powerOffTune: tune for when the system is turned off.
+bool doItOnce: // Makes the first part of alarmModeOn only execute once per call. 
+bool clearDisplay: Determines if the display should be cleared or not before printing. 
+
+int alarmModeOnTune: tune for when the system is turned on.
+int alarmModeOffTune: tune for when the system is turned off.
 int alarmTune: tune for when the alarm is triggered.
 int buttonPressTune: Tune for when a push-button or 4x4 button is pressed. 
 ```
@@ -30,7 +32,7 @@ int buttonPressTune: Tune for when a push-button or 4x4 button is pressed.
 ```cpp
 void
 void readPirSensor();
-void writeToLCD(const char* LCDMessage);
+void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false);
 void writeToSerialMonitor(const char* SerialMessage);
 void alarmModeOn();
 void alarmModeOff();
@@ -44,8 +46,11 @@ void alarmDeactivated();
 readPirSensor().
 Updates the value of sensorState through digitalRead(PIR_SENSOR).
 
-writeToLCD(const char* LCDMessage).
-The content of the parameter passed into the function is printed on the LCD display using the LiquidCrystal class’ print() method.
+writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false).
+The content of the LCDMessage parameter passed into the function is printed on the LCD display using the LiquidCrystal class’ print() method.
+The row parameter determine whether or not the message is printed on the first or second line.
+The clearDisplay parameter determine whether or not to call the LiquidCrystal class' .clear() method before printing, has false as default value.
+
 
 writeToSerialMonitor(const char* SerialMessage).
 The content of the parameter passed into the function is printed on the Serial monitor using the Serial objects. print() method.
