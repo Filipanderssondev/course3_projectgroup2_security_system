@@ -77,7 +77,7 @@ void loop()
 
 // Function definitions 
 
-void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false) //only resets if LCD if specified.
+void writeToLCD(const char* LCDMessage, int row, bool clearDisplay) //only resets if LCD if specified.
 {
 
   if (clearDisplay)
@@ -148,9 +148,8 @@ void alarmRinging()
       }
     }
   }
-    }
-  }
 }
+
 
 void checkButtonState()
 {
