@@ -47,6 +47,7 @@ void alarmDeactivated();
 void alarmRinging();
 void checkButtonState();
 void alarmModeOn();
+void alarmModeOff();
 
 void setup()
 {
@@ -72,6 +73,7 @@ void loop()
   checkButtonState(); // Check button state
 
   alarmModeOn(); //Causes the loop to continue running. 
+  alarmModeOff(); //Causes the loop to quit running
 
   // If motion is detected and alarm is not active
   if (sensorState && !alarmActive) {
@@ -217,9 +219,9 @@ void alarmModeOn()
     {
       buttonState = false; 
       switchLED(RED_LED); // Turn on red led.
-      writeToLCD("SAFE ALARM SYSTEM IS", 0, true); // Clear and write new message
+      writeToLCD("ALARM MODE", 0, true); // Clear and write new message
       writeToLCD("ON", 1, false);
-      Serial.println("ALARM IS ON! Searching....");
+      Serial.println("ALARM IS ACTIVE! Searching....");
       doItOnce = false;
     }
     
@@ -228,6 +230,23 @@ void alarmModeOn()
     if (buttonState)
     {
       doItOnce = true;
-      alarmPowerOff();
+      alarmModeOff();
     }
+}
+
+void alarmModeOff()
+{
+  buttonState = false;
+  switchLED(GREEN_LED); //Turn the led green
+  writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
+  writeToLCD("OFF", 1);
+  while(true)
+  {
+   checkButtonState();
+   if (buttonState == true)
+   {
+     break;
+   }
+  }
+  alarmModeOn();
 }
