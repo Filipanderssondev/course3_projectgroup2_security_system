@@ -8,7 +8,7 @@ Contributors: [Sabina](https://github.com/binasime), [Alexander](https://github.
 Links that we have used during the construction of our prototype
 ## [Kanban Board](https://github.com/users/Filipanderssondev/projects/6)
 
-## [TinkerCAD sketch](https://www.tinkercad.com/things/5uBEkDFoMVf/editel?returnTo=%2Fdashboard%2Fcollections%2FlpoVdsgYDhd%2Fcircuits&sharecode=g7MacNAFKvwASCkBhs4NBxaIz7i4_q1bs9MvRA8sCxU)   
+## [TinkerCAD sketch](https://www.tinkercad.com/things/hkzwk208qim-testing-safealarmsystemino/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=D0tnPiXF99BZVIktJoVi4gTVeHDah8EVGiA-xL8jnsk)   
 
 ### Project assignment:  
 Develop a security alarm system that detects motion using an infrared sensor. The alarm system consists of the following components:   
