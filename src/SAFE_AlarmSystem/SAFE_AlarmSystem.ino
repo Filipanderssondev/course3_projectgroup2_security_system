@@ -14,32 +14,33 @@ const int GREEN_LED = 8;
 
 // Frequencies for diffrent tunes  
 int alarmTune = 700;
-int powerOffTune = 75;
-int powerOnTune = 500;
+int alarmModeOffTune = 75;
+int alarmModeOnTune = 500;
 int buttonPressTune = 600;
-int buttonDebounce = 50;
-
-// Variables for timestamps
-unsigned long lastButtonPress;
 
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
+bool buttonRead; //variable used for the logic of checkButtonState
+bool clearDisplay; //Determine whether or not to wipe the LCD screen before printing.
 
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
-const unsigned long buttonDebounce = 50; // Debounce time
+const unsigned long buttonDebounce = 100; // Debounce time
+
+unsigned lastLEDBlink = 0;
 
 // Variable for tracking if alarm is active
 bool alarmActive = false;
 
 // Timer variables for alarm loop (previous blocked)
-unsigned long lastAlarmCheck = 0;
-const unsigned long alarmInterval = 100; // ms between alarmchecks
+//unsigned long lastAlarmCheck = 0;
+//const unsigned long alarmInterval = 100; // ms between alarmchecks
 
 // Function declarations
 void switchLED(int pinSlot); // pinSlot as parameter too set that slot as HIGH / ON
-void writeToLCD(const char* LCDMessage);
+void blinkingLED();
+void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false);
 void readPirSensor();
 void alarmDeactivated();
 void alarmRinging();
@@ -50,7 +51,8 @@ void setup()
   Serial.begin(9600);
   
   pinMode(BUZZER, OUTPUT);
-  pinMode(LED_BUILTIN, OUTPUT); // Replace with RGB LED (RED_LED, OUTPUT and GREEN_LED, OUTPUT)
+  pinMode(RED_LED, OUTPUT);
+  pinMode(GREEN_LED, OUTPUT); 
   pinMode(BUTTON, INPUT);
   pinMode (PIR_SENSOR, INPUT);
 
@@ -67,35 +69,26 @@ void loop()
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
 
+  alarmModeOn(); //Causes the loop to continue running. 
+
   // If motion is detected and alarm is not active
   if (sensorState && !alarmActive) {
     alarmRinging(); // Trigger the alarm
   }
 
-  // Non-blocking check for deactivating alarm
-  if (alarmActive) {
-    if (millis() - lastAlarmCheck >= alarmInterval) {
-      lastAlarmCheck = millis(); // Update timer
-      checkButtonState(); // Check if button is pressed
-
-      if (buttonState) {
-        alarmDeactivated(); // Stop alarm if button pressed
-        alarmActive = false; // Reset alarm status
-      }
-    }
-  }
-
-  // update LED logic to use red and green led?
-  digitalWrite(LED_BUILTIN, HIGH);
-  delay(1000); // Wait for 1000 millisecond(s)
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(1000); // Wait for 1000 millisecond(s)
 }
 
 // Function definitions 
 
-void writeToLCD(const char* LCDMessage, int row)
+void writeToLCD(const char* LCDMessage, int row, bool clearDisplay) //only resets if LCD if specified.
 {
+
+  if (clearDisplay)
+  {
+
+    LCD.clear();
+  }
+
   int textLength = strlen(LCDMessage);
   int padding = (16 - textLength) / 2;
   
@@ -106,6 +99,7 @@ void writeToLCD(const char* LCDMessage, int row)
   LCD.setCursor(padding, row); 
   LCD.print(LCDMessage);
 }
+
 void readPirSensor()
 {
   sensorState = digitalRead(PIR_SENSOR);
@@ -126,6 +120,20 @@ void switchLED(int pinSlot)
   else 
   {
     Serial.println("Wrong pin slot determined.");
+  }
+}
+
+void blinkingLED()
+{
+
+  if (millis() - lastLEDBlink >= 200)
+  {
+
+      digitalWrite(RED_LED, !digitalRead(RED_LED));
+      lastLEDBlink = millis();
+  }
+
+}
 
 void alarmRinging()
 {
@@ -133,25 +141,47 @@ void alarmRinging()
   if (!alarmActive) {
     alarmActive = true; // Mark alarm as active
     tone(BUZZER, alarmTune); // Start buzzer sound
-    LCD.clear();
-    writeToLCD("Alarm: Intruder!", 0); // Notify user
+    //LCD.clear();
+    writeToLCD("Alarm: Intruder!", 0, true); // Notify user
     Serial.println("Alarm triggered, Motion detected!");
+
+    //Enter a eternal loop
+    while (alarmActive)
+    {
+
+      blinkingLED(); //LED blinking every 500 ms.
+
+      // Non-blocking check for deactivating alarm
+    //if (alarmActive) {
+      //if (millis() - lastAlarmCheck >= alarmInterval) {
+        //lastAlarmCheck = millis(); // Update timer
+        checkButtonState(); // Check if button is pressed
+
+      if (buttonState) {
+          alarmActive = false; // Reset alarm status
+          alarmDeactivated(); // Stop alarm if button pressed
+      }
+    }
   }
 }
 
+
 void checkButtonState()
 {
-  bool buttonRead = digitalRead(BUTTON); // Read button state
+  buttonRead = digitalRead(BUTTON); // Read button state
 
+ 
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
-    if (millis() - lastButtonPress > buttonDebounce) { // Debounce check
+    if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
+
+      tone(BUZZER, buttonPressTune, 20); //make a sound for 150 ms.
       buttonState = true; // Update state
       lastButtonPress = millis();
       Serial.println("Button Pressed!");
     }
   }
   if (buttonRead == LOW && buttonState) { // If button released
-    if (millis() - lastButtonPress > buttonDebounce) { // Debounce check
+    if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
       buttonState = false; // Mark button as released
       Serial.println("Button Released!");
     }
@@ -160,7 +190,7 @@ void checkButtonState()
 
 void alarmDeactivated() 
 {
-  if (buttonState) { // If buttonState is true, enter the function
+  //if (buttonState) { // If buttonState is true, enter the function
     noTone(BUZZER); // Stop the buzzer
     //LCD.clear();
     //writeToLCD("Alarm deactivated.", 0); // add clear output
@@ -174,5 +204,5 @@ void alarmDeactivated()
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
 
-  }
+  //}
 }
