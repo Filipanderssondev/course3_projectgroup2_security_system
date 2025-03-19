@@ -21,6 +21,7 @@ int buttonPressTune = 600;
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
+bool doItOnce; 
 bool buttonRead; //variable used for the logic of checkButtonState
 bool clearDisplay; //Determine whether or not to wipe the LCD screen before printing.
 
@@ -45,6 +46,7 @@ void readPirSensor();
 void alarmDeactivated();
 void alarmRinging();
 void checkButtonState();
+void alarmModeOn();
 
 void setup()
 {
@@ -195,14 +197,37 @@ void alarmDeactivated()
     //LCD.clear();
     //writeToLCD("Alarm deactivated.", 0); // add clear output
     //LCD.clear();
-	//LCD.setCursor(0, 0);
-	//LCD.print("Alarm deactivated.");
+	  //LCD.setCursor(0, 0);
+	  //LCD.print("Alarm deactivated.");
     writeToLCD("Alarm", 0);
-	writeToLCD("deactivated", 1);
+	  writeToLCD("deactivated", 1);
 
     Serial.println("Alarm deactivated.");
     buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
-
   //}
+}
+
+// Probably need some rework?
+void alarmModeOn()
+{
+    // Run this block once every time function alarmModeOn() is called.
+    // Initialize doItOnce in setup() as true?
+    if (doItOnce == true)
+    {
+      buttonState = false; 
+      switchLED(RED_LED); // Turn on red led.
+      writeToLCD("SAFE ALARM SYSTEM IS", 0, true); // Clear and write new message
+      writeToLCD("ON", 1, false);
+      Serial.println("ALARM IS ON! Searching....");
+      doItOnce = false;
+    }
+    
+    checkButtonState();
+
+    if (buttonState)
+    {
+      doItOnce = true;
+      alarmPowerOff();
+    }
 }
