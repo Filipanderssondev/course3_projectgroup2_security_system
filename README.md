@@ -41,7 +41,7 @@ ______
 Follow these instructions to build a complete prototype.
 1. Connect the hardware. [Link to instructions to connect physical hardware](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/connect.md)
 2. Build code using **C++/Arduino IDE**. [Link to source code](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/src/SAFE_AlarmSystem/SAFE_AlarmSystem.ino)
-3. Schematics for prototype. [Link to schematics](https://www.tinkercad.com/things/hkzwk208qim-testing-safealarmsystemino/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=D0tnPiXF99BZVIktJoVi4gTVeHDah8EVGiA-xL8jnsk)
+3. Schematics for prototype. [Link to schematics](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/TESTING%20SAFE_AlarmSystem.ino.pdf)
 4. Manual for completed prototype. [How to use the device](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/manual.md)
    
 ### Safety requirements:  
