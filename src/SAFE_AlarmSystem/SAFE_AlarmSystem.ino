@@ -73,13 +73,11 @@ void loop()
 {
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
-<<<<<<< HEAD
 	
   // Start alarm
   if (buttonState == HIGH)
   {
     alarmEnabled = !alarmEnabled; 
-=======
 
   alarmModeOn(); //Causes the loop to continue running. 
   alarmModeOff(); //Causes the loop to quit running
@@ -87,7 +85,6 @@ void loop()
   // If motion is detected and alarm is not active
   if (sensorState && !alarmActive) {
     alarmRinging(); // Trigger the alarm
->>>>>>> 6eef46952b126f1ff4f57994b7378e4da07f5d7e
   }
 	
   if (alarmEnabled)
