@@ -1,6 +1,7 @@
-# SAFE Security System - User Manual for dummies
+# 🚨 SAFE Security System - User Manual for Dummies
+
 ## 📌 What is the SAFE Security System?
-The SAFE Security System is a **simple home security system** that detects movement and alerts you with a **buzzer (alarm)** and a **blinking red light**. 
+The SAFE Security System is a **simple home security system** that detects movement and alerts you with a **buzzer (alarm)** and a **blinking red light**.
 
 This system is controlled by an **Arduino board** and includes:
 - A **motion sensor** that detects movement.
@@ -8,13 +9,13 @@ This system is controlled by an **Arduino board** and includes:
 - An **LCD screen** that shows system messages.
 - A **button** to turn the system ON/OFF and stop the alarm.
 - Two **LED lights**:
-  - **Green LED** = System is ON and ready.
+  - **Green LED** = System is ON and ready. 
   - **Red LED** = System detected movement (alarm triggered).
 
 ---
 
 ## 🛠 What’s Included in the System?
-| **Component**           | **What It Does** |
+| **Component**          | **What It Does** |
 |------------------------|----------------|
 | **Arduino Uno**        | The "brain" of the system that controls everything. |
 | **PIR Motion Sensor**  | Detects movement. |
@@ -29,7 +30,7 @@ This system is controlled by an **Arduino board** and includes:
 
 ### **1️⃣ Step 1: Power On the System**
 1. **Connect** the Arduino board to a **USB power source** or a power adapter.
-2. The **LCD screen** will display:
+2. The **LCD screen** will display:  
 3. The **Green LED** will turn ON, meaning the system is **ready to use**.
 
 ---
@@ -46,7 +47,7 @@ This system is controlled by an **Arduino board** and includes:
 - If someone **moves** in front of the motion sensor:
 1. The **buzzer will start ringing** loudly.
 2. The **Red LED** will start **blinking**.
-3. The LCD will display:
+3. The LCD will display:  
   ```
   Alarm: Intruder!
   ```
@@ -56,7 +57,7 @@ This system is controlled by an **Arduino board** and includes:
 
 ### **4️⃣ Step 4: Stopping the Alarm**
 1. **Press the button** to stop the alarm.
-2. The buzzer will stop, and the LCD will show:
+2. The buzzer will stop, and the LCD will show:  
 3. The **Green LED** will turn ON, and the **Red LED** will turn OFF.
 4. The system is now **ready to detect movement again**.
 
@@ -97,4 +98,4 @@ This system is controlled by an **Arduino board** and includes:
 
 ---
 
-🎉 **Now you're ready to use your SAFE Security System!** 🚀
+🎉 **Now you're ready to use your SAFE Security System!** 🚀  
