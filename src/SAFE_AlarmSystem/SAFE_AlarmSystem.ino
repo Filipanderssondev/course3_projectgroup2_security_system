@@ -21,7 +21,9 @@ int buttonPressTune = 600;
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
-bool doItOnce; 
+bool alarmEnabled = false;
+bool doItOnceAlarmModeOn = true;
+bool doItOnceAlarmModeOff = true;
 bool buttonRead; //variable used for the logic of checkButtonState
 bool clearDisplay; //Determine whether or not to wipe the LCD screen before printing.
 
@@ -71,6 +73,11 @@ void loop()
 {
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
+	
+  // Start alarm
+  if (buttonState == HIGH)
+  {
+    alarmEnabled = !alarmEnabled; 
 
   alarmModeOn(); //Causes the loop to continue running. 
   alarmModeOff(); //Causes the loop to quit running
@@ -79,7 +86,24 @@ void loop()
   if (sensorState && !alarmActive) {
     alarmRinging(); // Trigger the alarm
   }
-
+	
+  if (alarmEnabled)
+  {
+    alarmModeOn();
+    doItOnceAlarmModeOff = true;
+    // If block for chekcing motion
+    if (sensorState && !alarmActive) 
+    {
+    	alarmRinging(); // Trigger the alarm
+  	}
+  }
+  
+  else
+  {
+    alarmModeOff();
+    doItOnceAlarmModeOn = true;
+  }
+  delay (250);
 }
 
 // Function definitions 
@@ -169,7 +193,6 @@ void alarmRinging()
   }
 }
 
-
 void checkButtonState()
 {
   buttonRead = digitalRead(BUTTON); // Read button state
@@ -215,27 +238,37 @@ void alarmModeOn()
 {
     // Run this block once every time function alarmModeOn() is called.
     // Initialize doItOnce in setup() as true?
-    if (doItOnce == true)
+    if (doItOnceAlarmModeOn)
     {
-      buttonState = false; 
+      // buttonState = false; 
       switchLED(RED_LED); // Turn on red led.
       writeToLCD("ALARM MODE", 0, true); // Clear and write new message
       writeToLCD("ON", 1, false);
       Serial.println("ALARM IS ACTIVE! Searching....");
-      doItOnce = false;
+      doItOnceAlarmModeOn = false;
     }
-    
-    checkButtonState();
-
+    /*
     if (buttonState)
     {
+      doItOnceAlarmModeOn = true;
+
       doItOnce = true;
       alarmModeOff();
     }
+  	*/
 }
 
 void alarmModeOff()
 {
+  if (doItOnceAlarmModeOff)
+  {
+    // buttonState = false;
+    switchLED(GREEN_LED); //Turn the led green
+    writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
+    writeToLCD("OFF", 1);
+    doItOnceAlarmModeOff = false;
+  }
+}
   buttonState = false;
   switchLED(GREEN_LED); //Turn the led green
   writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
