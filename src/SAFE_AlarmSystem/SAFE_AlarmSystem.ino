@@ -34,6 +34,9 @@ unsigned lastLEDBlink = 0;
 // Variable for tracking if alarm is active
 bool alarmActive = false;
 
+// Variable for tracking if alarm mode is ON/OFF
+bool alarmMode = false;
+
 // Timer variables for alarm loop (previous blocked)
 //unsigned long lastAlarmCheck = 0;
 //const unsigned long alarmInterval = 100; // ms between alarmchecks
@@ -46,8 +49,9 @@ void readPirSensor();
 void alarmDeactivated();
 void alarmRinging();
 void checkButtonState();
-void alarmModeOn();
-void alarmModeOff();
+void handleBlinkingLED();
+// void alarmModeOn();
+// void alarmModeOff();
 
 void setup()
 {
@@ -72,14 +76,23 @@ void loop()
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
 
-  alarmModeOn(); //Causes the loop to continue running. 
-  alarmModeOff(); //Causes the loop to quit running
+  // alarmModeOn(); //Causes the loop to continue running. 
+  // alarmModeOff(); //Causes the loop to quit running
 
-  // If motion is detected and alarm is not active
-  if (sensorState && !alarmActive) {
+  // // If motion is detected and alarm is not active
+  // if (sensorState && !alarmActive) {
+  //   alarmRinging(); // Trigger the alarm
+  // }
+
+  // If alarm mode is active and motion is detected, trigger the alarm
+  if (alarmMode && sensorState && !alarmActive) {
     alarmRinging(); // Trigger the alarm
   }
 
+  // Blinking LED during active alarm
+  if (alarmActive) {
+    handleBlinkingLED(); // LED blinking every 200 ms
+  }
 }
 
 // Function definitions 
@@ -89,13 +102,11 @@ void writeToLCD(const char* LCDMessage, int row, bool clearDisplay) //only reset
 
   if (clearDisplay)
   {
-
     LCD.clear();
   }
 
   int textLength = strlen(LCDMessage);
   int padding = (16 - textLength) / 2;
-  
   if (padding < 0) padding = 0;
 
   LCD.setCursor(0, row); 
@@ -127,16 +138,14 @@ void switchLED(int pinSlot)
   }
 }
 
-void blinkingLED()
+void handleBlinkingLED()
 {
 
   if (millis() - lastLEDBlink >= 200)
   {
-
-      digitalWrite(RED_LED, !digitalRead(RED_LED));
       lastLEDBlink = millis();
+      digitalWrite(RED_LED, !digitalRead(RED_LED));
   }
-
 }
 
 void alarmRinging()
@@ -145,43 +154,63 @@ void alarmRinging()
   if (!alarmActive) {
     alarmActive = true; // Mark alarm as active
     tone(BUZZER, alarmTune); // Start buzzer sound
-    //LCD.clear();
+    //LCD.clear(); rmv
     writeToLCD("Alarm: Intruder!", 0, true); // Notify user
     Serial.println("Alarm triggered, Motion detected!");
 
-    //Enter a eternal loop
-    while (alarmActive)
-    {
+    // //Enter a eternal loop
+    // while (alarmActive)
+    // {
 
-      blinkingLED(); //LED blinking every 500 ms.
+    //   blinkingLED(); //LED blinking every 500 ms.
 
-      // Non-blocking check for deactivating alarm
-    //if (alarmActive) {
-      //if (millis() - lastAlarmCheck >= alarmInterval) {
-        //lastAlarmCheck = millis(); // Update timer
-        checkButtonState(); // Check if button is pressed
+    //   // Non-blocking check for deactivating alarm
+    // //if (alarmActive) {
+    //   //if (millis() - lastAlarmCheck >= alarmInterval) {
+    //     //lastAlarmCheck = millis(); // Update timer
+    //     checkButtonState(); // Check if button is pressed
 
-      if (buttonState) {
-          alarmActive = false; // Reset alarm status
-          alarmDeactivated(); // Stop alarm if button pressed
-      }
-    }
+    //   if (buttonState) {
+    //       alarmActive = false; // Reset alarm status
+    //       alarmDeactivated(); // Stop alarm if button pressed
+    //   }
+    // }
   }
 }
-
 
 void checkButtonState()
 {
   buttonRead = digitalRead(BUTTON); // Read button state
 
- 
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
     if (millis() - lastButtonPress >= buttonDebounce) { // Debounce check
-
-      tone(BUZZER, buttonPressTune, 20); //make a sound for 150 ms.
+      tone(BUZZER, buttonPressTune, 150); //make a sound for 150 ms.
       buttonState = true; // Update state
       lastButtonPress = millis();
       Serial.println("Button Pressed!");
+
+      if (alarmActive) {
+        alarmActive = false; // Reset alarm status
+        alarmDeactivated(); // Stop alarm if button pressed
+      } else {
+        alarmMode = !alarmMode; // Toggle alarm mode
+        if (alarmMode) {
+          tone(BUZZER, alarmModeOnTune, 200);
+          writeToLCD("Alarm mode", 0, true);
+          writeToLCD("ON", 1);
+          switchLED(RED_LED);
+          Serial.println("Alarm mode ON.");
+        } else {
+          tone(BUZZER, alarmModeOffTune, 200);
+          writeToLCD("Alarm mode", 0, true);
+          writeToLCD("OFF", 1);
+          switchLED(GREEN_LED);
+          Serial.println("Alarm mode OFF.");
+          sensorState = false; // Reset sensor state
+          noTone(BUZZER);
+          digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
+        }
+      }
     }
   }
   if (buttonRead == LOW && buttonState) { // If button released
@@ -205,48 +234,49 @@ void alarmDeactivated()
 	  writeToLCD("deactivated", 1);
 
     Serial.println("Alarm deactivated.");
-    buttonState = false; // Reset button state
     sensorState = false; // Reset motion sensor
+    switchLED(GREEN_LED); // Set LED status
+    digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
   //}
 }
 
-// Probably need some rework?
-void alarmModeOn()
-{
-    // Run this block once every time function alarmModeOn() is called.
-    // Initialize doItOnce in setup() as true?
-    if (doItOnce == true)
-    {
-      buttonState = false; 
-      switchLED(RED_LED); // Turn on red led.
-      writeToLCD("ALARM MODE", 0, true); // Clear and write new message
-      writeToLCD("ON", 1, false);
-      Serial.println("ALARM IS ACTIVE! Searching....");
-      doItOnce = false;
-    }
+// // Probably need some rework?
+// void alarmModeOn()
+// {
+//     // Run this block once every time function alarmModeOn() is called.
+//     // Initialize doItOnce in setup() as true?
+//     if (doItOnce == true)
+//     {
+//       buttonState = false; 
+//       switchLED(RED_LED); // Turn on red led.
+//       writeToLCD("ALARM MODE", 0, true); // Clear and write new message
+//       writeToLCD("ON", 1, false);
+//       Serial.println("ALARM IS ACTIVE! Searching....");
+//       doItOnce = false;
+//     }
     
-    checkButtonState();
+//     checkButtonState();
 
-    if (buttonState)
-    {
-      doItOnce = true;
-      alarmModeOff();
-    }
-}
+//     if (buttonState)
+//     {
+//       doItOnce = true;
+//       alarmModeOff();
+//     }
+// }
 
-void alarmModeOff()
-{
-  buttonState = false;
-  switchLED(GREEN_LED); //Turn the led green
-  writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
-  writeToLCD("OFF", 1);
-  while(true)
-  {
-   checkButtonState();
-   if (buttonState == true)
-   {
-     break;
-   }
-  }
-  alarmModeOn();
-}
+// void alarmModeOff()
+// {
+//   buttonState = false;
+//   switchLED(GREEN_LED); //Turn the led green
+//   writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
+//   writeToLCD("OFF", 1);
+//   while(true)
+//   {
+//    checkButtonState();
+//    if (buttonState == true)
+//    {
+//      break;
+//    }
+//   }
+//   alarmModeOn();
+// }
