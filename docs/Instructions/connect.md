@@ -2,7 +2,7 @@
 
 ### **[Components](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/tree/dev-bubba/94?tab=readme-ov-file#potential-extensions-if-time-and-resources-are-available)** needed before you start
 
-1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages)**  
+1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen
 #include <LiquidCrystal.h>
