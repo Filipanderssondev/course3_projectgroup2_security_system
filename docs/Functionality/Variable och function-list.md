@@ -10,73 +10,73 @@ Definitions of variables/functions should be located **after** the running code.
 `{number} = pin slot`  
 
 ```cpp
-const int BUZZER {9};
-const int BUTTON {10};
-const int PIR_SENSOR {6};
-const int RED_LED {7};
-const int GREEN_LED {8};
+const int BUZZER = 9;             // Pin slot for buzzer
+const int BUTTON = 10;            // Pin slot for push button
+const int PIR_SENSOR = 6;         // Pin slot for PIR sensor
+const int RED_LED = 7;            // Pin slot for red LED
+const int GREEN_LED = 8;          // Pin slot for green LED
 
-bool sensorState: Stores boolean value from the PIR_SENSOR.
-bool buttonState: Stores boolean value from BUTTON.
-bool buttonRead // Evaluates the buttonState
-bool doItOnce: // Makes the first part of alarmModeOn only execute once per call. 
-bool clearDisplay: Determines if the display should be cleared or not before printing. 
+int alarmTune = 700;              // Tune frequency for alarm trigger
+int alarmModeOffTune = 75;        // Tune frequency for alarm mode OFF
+int alarmModeOnTune = 500;        // Tune frequency for alarm mode ON
+int buttonPressTune = 600;        // Tune frequency for button press
 
-int alarmModeOnTune: tune for when the system is turned on.
-int alarmModeOffTune: tune for when the system is turned off.
-int alarmTune: tune for when the alarm is triggered.
-int buttonPressTune: Tune for when a push-button or 4x4 button is pressed. 
+bool sensorState = false;         // Stores value from PIR_SENSOR
+bool buttonState = false;         // Tracks state of BUTTON (pressed/released)
+bool currentButtonState;          // Temporary BUTTON pin reading used in checkButtonState() logic
 
-unsigned long lastButtonPress = 0: // Store last press time
-const unsigned long buttonDebounce = 100: // Debounce time
-unsigned lastLEDBlink: //Store last blink of the Red LED.
+unsigned long lastButtonPress = 0;            // Stores last button press time
+const unsigned long buttonDebounce = 300;     // Debounce duration for button (ms)
+
+unsigned long lastLEDBlink = 0;               // Tracks last RED_LED blink time
+
+bool alarmActive = false;                     // Tracks if alarm is active
+bool alarmMode = false;                       // Tracks if alarm mode is ON/OFF
+bool alarmTriggeredOnce = false;              // Prevents repeated alarm triggers
+bool waitingForPIRClear = false;              // Waits for PIR sensor to reset (LOW) when activating
+
+
 ```
 
 ### Function list: 
 ```cpp
 void switchLED(int pinSlot);
-void blinkingLED();
+void handleBlinkingLED();
 void readPirSensor();
 void writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false);
-void writeToSerialMonitor(const char* SerialMessage);
-void alarmModeOn();
-void alarmModeOff();
-void alarmActivated();
+void alarmRinging();
 void alarmDeactivated();
-
+void checkButtonState();
+void handleButtonPress();
 ```
 
 ### Function explanations:
 ```cpp
-switchLED(int pinSlot).
-Depending on the pinSlot parameter, turns on/off RED_LED and GREEN_LED.
-if the parameter is GREEN_LED, turns on GREEN_LED and turns off RED_LED and vice versa. 
+switchLED(int pinSlot)
+// Turns ON the specified LED (RED_LED or GREEN_LED) and turns OFF the other.
 
-blinkingLED().
-Makes the RED_LED blink roughly every half second. Used in the alarmRinging() function.
+handleBlinkingLED()
+// Blinks RED_LED every 200 ms while alarm is active.
 
-readPirSensor().
-Updates the value of sensorState through digitalRead(PIR_SENSOR).
+readPirSensor()
+// Updates sensorState with the current PIR_SENSOR reading.
 
-writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false).
-The content of the LCDMessage parameter passed into the function is printed on the LCD display using the LiquidCrystal class’ print() method.
-The row parameter determine whether or not the message is printed on the first or second line.
-The clearDisplay parameter determine whether or not to call the LiquidCrystal class' .clear() method before printing, has false as default value.
+writeToLCD(const char* LCDMessage, int row, bool clearDisplay = false)
+// Prints LCDMessage to the specified row on LCD.
+// clearDisplay (default false) clears the LCD before printing.
+// Text is centered on a 16-character line.
 
-
-writeToSerialMonitor(const char* SerialMessage).
-The content of the parameter passed into the function is printed on the Serial monitor using the Serial objects. print() method.
-
-alarmModeOn().
-The Alarm is standing by and mnonitoring (its on and searching for motion)
-
-alarmModeOff().
-The Alarm is not standing by and monitoring (its off and not searching for motion)
-
-alarmActivated().
-Invoke the tune() function with alarmTune as frequency, enters a loop until alarmDeactivated() is invoked by pressing the button while in the loop.
+alarmRinging()
+// Activates the alarm: sets alarmActive = true, plays alarmTune, and displays/logs alarm status.
 
 alarmDeactivated()
-Waits for buttonState to record a change in the state of the BUTTON, thereafter proceed with breaking out of the loop caused by alarmRinging(), followed immediately by invoking noTune(BUZZER) to turn off the alarm. 
-Also informs the user by invoking both writeToLCD() and writeToSerialMonitor to tell them that the alarm has been deactivated.
+// Stops the alarm, resets system to safe mode, updates LEDs and messages.
+
+checkButtonState()
+// Handles button debounce and press/release detection.
+// On press, triggers sound and calls handleButtonPress().
+
+handleButtonPress()
+// Handles logic for toggling alarm mode or deactivating alarm.
+// Plays corresponding tunes, updates LEDs, resets flags, and logs actions.
 ```
