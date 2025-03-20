@@ -73,11 +73,21 @@ void loop()
 {
   readPirSensor(); // Check PIR sensor
   checkButtonState(); // Check button state
+<<<<<<< HEAD
 	
   // Start alarm
   if (buttonState == HIGH)
   {
     alarmEnabled = !alarmEnabled; 
+=======
+
+  alarmModeOn(); //Causes the loop to continue running. 
+  alarmModeOff(); //Causes the loop to quit running
+
+  // If motion is detected and alarm is not active
+  if (sensorState && !alarmActive) {
+    alarmRinging(); // Trigger the alarm
+>>>>>>> 6eef46952b126f1ff4f57994b7378e4da07f5d7e
   }
 	
   if (alarmEnabled)
@@ -186,7 +196,6 @@ void alarmRinging()
   }
 }
 
-
 void checkButtonState()
 {
   buttonRead = digitalRead(BUTTON); // Read button state
@@ -245,6 +254,9 @@ void alarmModeOn()
     if (buttonState)
     {
       doItOnceAlarmModeOn = true;
+
+      doItOnce = true;
+      alarmModeOff();
     }
   	*/
 }
@@ -259,4 +271,18 @@ void alarmModeOff()
     writeToLCD("OFF", 1);
     doItOnceAlarmModeOff = false;
   }
+}
+  buttonState = false;
+  switchLED(GREEN_LED); //Turn the led green
+  writeToLCD("ALARM MODE ", 0, true); // Clear and write new message
+  writeToLCD("OFF", 1);
+  while(true)
+  {
+   checkButtonState();
+   if (buttonState == true)
+   {
+     break;
+   }
+  }
+  alarmModeOn();
 }
