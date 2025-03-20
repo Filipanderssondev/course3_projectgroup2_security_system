@@ -1,5 +1,4 @@
-# SAFE Security System - Beginner-Friendly User Manual
-
+# SAFE Security System - User Manual for dummies
 ## 📌 What is the SAFE Security System?
 The SAFE Security System is a **simple home security system** that detects movement and alerts you with a **buzzer (alarm)** and a **blinking red light**. 
 
