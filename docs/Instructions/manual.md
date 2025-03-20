@@ -91,7 +91,7 @@ This system is controlled by an **Arduino board** and includes:
 ## 📊 Quick Summary of How to Use It
 | **Action**            | **Result**                               |
 |----------------------|----------------------------------------|
-| **Press button once** | Alarm mode ON (System is armed)       |
+| **Press button once** | Alarm mode ON |
 | **Move in front of sensor** | Alarm sounds, red LED blinks |
 | **Press button again** | Alarm stops                          |
 | **Press button once more** | Alarm mode OFF (System is inactive) |
