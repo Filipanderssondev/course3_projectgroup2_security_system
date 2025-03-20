@@ -234,6 +234,7 @@ void alarmDeactivated()
   writeToLCD("deactivated", 1);
   Serial.println("Alarm deactivated.");
   sensorState = false; // Reset motion sensor
+  alarmMode = false;
   switchLED(GREEN_LED); // Set LED status
   //digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
   //digitalWrite(GREEN_LED, HIGH); // Ensure GREEN_LED is on
