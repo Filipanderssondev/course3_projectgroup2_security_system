@@ -24,8 +24,7 @@ bool buttonState = false;
 bool alarmEnabled = false;
 bool doItOnceAlarmModeOn = true;
 bool doItOnceAlarmModeOff = true;
-bool buttonRead; //variable used for the logic of checkButtonState
-bool clearDisplay; //Determine whether or not to wipe the LCD screen before printing.
+bool currentButtonState; //variable used for the logic of checkButtonState
 
 // Variables for button debounce
 unsigned long lastButtonPress = 0; // Store last press time
@@ -170,9 +169,9 @@ void alarmRinging()
 
 void checkButtonState() {
 
-  buttonRead = digitalRead(BUTTON); // Read button state
+  currentButtonState = digitalRead(BUTTON); // Read button state
 
-  if (buttonRead == HIGH && !buttonState) { // If button is pressed
+  if (currentButtonState == HIGH && !buttonState) { // If button is pressed
     if (millis() - lastButtonPress >= buttonDebounce) {
       tone(BUZZER, buttonPressTune, 150); // Make a sound for 150 ms
       buttonState = true; // Update state
@@ -183,7 +182,7 @@ void checkButtonState() {
     }
   }
 
-  if (buttonRead == LOW && buttonState) { // If button is released
+  if (currentButtonState == LOW && buttonState) { // If button is released
     if (millis() - lastButtonPress >= buttonDebounce) {
       buttonState = false; // Mark button as released
       Serial.println("Button Released!");
