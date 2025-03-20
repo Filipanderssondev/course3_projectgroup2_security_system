@@ -21,7 +21,9 @@ int buttonPressTune = 600;
 // Variables for containing the value from a reading.
 bool sensorState = false;
 bool buttonState = false;
-bool doItOnce; 
+bool alarmEnabled = false;
+bool doItOnceAlarmModeOn = true;
+bool doItOnceAlarmModeOff = true;
 bool buttonRead; //variable used for the logic of checkButtonState
 bool clearDisplay; //Determine whether or not to wipe the LCD screen before printing.
 
@@ -74,6 +76,7 @@ void setup()
 
 void loop()
 {
+
   checkButtonState();  // Always check for button press
 
   // Wait until PIR sensor resets to LOW after alarm mode is activated
@@ -164,7 +167,9 @@ void alarmRinging()
   }
 }
 
+
 void checkButtonState() {
+
   buttonRead = digitalRead(BUTTON); // Read button state
 
   if (buttonRead == HIGH && !buttonState) { // If button is pressed
@@ -218,10 +223,12 @@ void handleButtonPress() {
       digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
     }
   }
+
 }
 
 void alarmDeactivated() 
 {
+  
   noTone(BUZZER); // Stop the buzzer
   writeToLCD("Alarm", 0);
   writeToLCD("deactivated", 1);
@@ -230,5 +237,6 @@ void alarmDeactivated()
   switchLED(GREEN_LED); // Set LED status
   //digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
   //digitalWrite(GREEN_LED, HIGH); // Ensure GREEN_LED is on
+
   buttonState = false;
 }
