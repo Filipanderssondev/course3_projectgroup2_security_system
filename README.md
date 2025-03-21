@@ -43,19 +43,19 @@ Follow these instructions to build a complete prototype.
 2. Build code using **C++/Arduino IDE**. [Link to source code](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/src/SAFE_AlarmSystem/SAFE_AlarmSystem.ino)
 3. Schematics for prototype. [Link to schematics](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/TESTING%20SAFE_AlarmSystem.ino.pdf)
 4. Manual for completed prototype. [How to use the device](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/manual.md)
-   
+____  
 ### Safety requirements:  
 (To be defined based on project scope and implementation)
-# ✅ System Requirements – SAFE Security System
-
-## 🔧 Hardware
-
+###  ✅ System Requirements – SAFE Security System
+____  
+###  🔧 Hardware
+____  
 ### 🧠 Microcontroller:
 - **Arduino Uno** or compatible board.
 - Minimum **13 digital I/O pins** (9 used: pins 2–12).
 - **RAM:** 2 KB is sufficient.
 - **Flash memory:** Approximately 5–10 KB used (Uno has 32 KB – more than enough).
-
+____  
 ### 📦 Required Components:
 | **Component**   | **Pin(s)** | **Description** |
 |----------------|------------|-----------------|
@@ -65,18 +65,17 @@ Follow these instructions to build a complete prototype.
 | **Buzzer** | Pin 9 | Sounds when motion is detected |
 | **Red LED** | Pin 7 | Blinks when alarm is triggered |
 | **Green LED** | Pin 8 | Indicates system is active and in standby mode |
-
+____  
 ### 🔌 Power Supply:
 - **5V** via USB or an external power source (e.g. 9V adapter).
-
----
+____  
 
 ## 💻 Software
-
+____  
 ### Requirements:
 - **Arduino IDE** (version 1.8.x or higher recommended)
 - **LiquidCrystal Library** (included by default in Arduino IDE)
-
+____  
 ---
 
 ## 📌 Notes:
