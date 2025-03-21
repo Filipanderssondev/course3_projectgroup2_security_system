@@ -6,7 +6,7 @@ Assignment to summarize our third course and prepare for the next.
 ![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/SAF.png)  
 
 ### File tree/Structure:
-course3_projectgroup2_security_system/
+``` course3_projectgroup2_security_system/
 ├── docs/
 │   ├── Assignment/
 │   │   └── Projectassignment.pdf
@@ -26,7 +26,7 @@ course3_projectgroup2_security_system/
 │   ├── SAFE_Alarm_System_V1.png
 │   └── SAFE_Alarm_System_V1_Schematic.pdf
 │
-└── README.md
+└── README.md ```
 
 
 ________________
