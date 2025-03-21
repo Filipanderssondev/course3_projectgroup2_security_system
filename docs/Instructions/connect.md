@@ -24,6 +24,10 @@ For a quick reminder, the components needed are the following.
 
 Keep in mind that the wiring and sensitivity of the components you have compared to the ones available in TinkerCad or used by us while assembling the project may differ slightly or greatly. Before you proceed we strongly recommend that you consult the ***datasheets*** or ***instructions*** for your own components and adapt the wiring accordingly.
 
+2. Connecting the components.
+* Pay close attention to which pin is connect to which component in the sketch, make sure that they match your physical wiring. 
+* To make it easier to keep track of the wiring and the components, we advise you to stick as closely to the sketch as possible. However, if you need the space, or can still easily keep track of the wires and components. Feel free to place them wherever you wish, as long as the wiring matches the sketch. 
+
 1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen
