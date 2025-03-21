@@ -31,7 +31,7 @@ course3_projectgroup2_security_system/
 
 ________________
 **Links that we have used during the construction of our prototype**  
-### [Kanban/Progress Board](https://github.com/users/Filipanderssondev/projects/6)
+### [Kanban/Project Board](https://github.com/users/Filipanderssondev/projects/6)
 
 ### [TinkerCAD sketch](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)   
 _____________
