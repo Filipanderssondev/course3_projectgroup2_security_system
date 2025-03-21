@@ -40,9 +40,6 @@ ______
 ### Instructions for usage:  
 Follow these instructions to build a complete prototype.
 1. Connect the hardware. [Link to instructions to connect physical hardware](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/connect.md)
-2. Build code using **C++/Arduino IDE**. [Link to source code](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/src/SAFE_AlarmSystem/SAFE_AlarmSystem.ino)
+2. Upload the code using **Arduino IDE**. [How to install Arduino IDE](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/Arduino_IDE.md)
 3. Schematics for prototype. [Link to schematics](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/TESTING%20SAFE_AlarmSystem.ino.pdf)
 4. Manual for completed prototype. [How to use the device](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/manual.md)
-   
-### Safety requirements:  
-(To be defined based on project scope and implementation)
