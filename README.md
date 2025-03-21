@@ -81,3 +81,4 @@ ____
 - It does **not require additional memory** or advanced features.
 - All functionality fits well within the **limitations of the Arduino Uno**.
 - All components used are **commonly available in be
+____  
