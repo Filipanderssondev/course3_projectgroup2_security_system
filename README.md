@@ -27,7 +27,8 @@ course3_projectgroup2_security_system/
 │   ├── SAFE_Alarm_System_V1.png
 │   └── SAFE_Alarm_System_V1_Schematic.pdf
 │
-└── README.md ´´´
+└── README.md 
+```
 
 
 ________________
