@@ -76,8 +76,6 @@ ____
 - **Arduino IDE** (version 1.8.x or higher recommended)
 - **LiquidCrystal Library** (included by default in Arduino IDE)
 ____  
----
-
 ## 📌 Notes:
 - This code is designed for **entry-level Arduino boards** like the **Uno or Nano**.
 - It does **not require additional memory** or advanced features.
