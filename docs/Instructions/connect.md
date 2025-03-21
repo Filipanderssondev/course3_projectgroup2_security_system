@@ -67,7 +67,7 @@ comprehensive list of wiring.
 
 
 
-1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
+<!-- 1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen
 #include <LiquidCrystal.h>
@@ -86,4 +86,4 @@ const int GREEN_LED = 8;
 2. Open the [TinkerCAD](https://www.tinkercad.com/things/hkzwk208qim-testing-safealarmsystemino/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=D0tnPiXF99BZVIktJoVi4gTVeHDah8EVGiA-xL8jnsk)
 to look up the wiring.  
 
-3. Carefully pin the device together **(without power to prevent shortcircuiting)**
+3. Carefully pin the device together **(without power to prevent shortcircuiting)** -->
