@@ -4,7 +4,7 @@
 
 ## The tinkerCAD sketch for V1 of the SAFE-AlarmSystem project.
 
-    ![view Safe_AlarmSystemV1.png](../../../tools/SAFE_Alarm_System_v1.png)
+    ![view Safe_AlarmSystemV1.png](../../tools/SAFE_Alarm_System_v1.png)
 
 ### Create your own copy of the sketch
 
