@@ -6,6 +6,7 @@ Assignment to summarize our third course and prepare for the next.
 ![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/SAF.png)  
 
 ### File tree/Structure:
+```
 course3_projectgroup2_security_system/
 ├── docs/
 │   ├── Assignment/
@@ -18,20 +19,21 @@ course3_projectgroup2_security_system/
 │       └── manual.md
 │   
 ├── src/
-│   └── SAFE_AlarmSystem/
-│       └── Safe_AlarmSystem.ino
+│   └── SAFE_AlarmSystem_V1/
+│       └── SAFE_AlarmSystem_V1.ino
 │
 ├── tools/
 │   ├── Saf.png
 │   ├── SAFE_Alarm_System_V1.png
 │   └── SAFE_Alarm_System_V1_Schematic.pdf
 │
-└── README.md
+└── README.md 
+```
 
 
 ________________
 **Links that we have used during the construction of our prototype**  
-### [Kanban/Progress Board](https://github.com/users/Filipanderssondev/projects/6)
+### [Kanban/Project Board](https://github.com/users/Filipanderssondev/projects/6)
 
 ### [TinkerCAD sketch](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)   
 _____________
