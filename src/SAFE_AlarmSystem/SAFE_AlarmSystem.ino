@@ -1,6 +1,7 @@
 // Library for the LiquidCrystal class, required
 // to use LCD.
 #include <LiquidCrystal.h>
+#include <Keypad.h>
 
 // Initialize LCD with pin: (RS, E, D4, D5, D6, D7)
 LiquidCrystal LCD(11, 12, 2, 3, 4, 5);
@@ -31,6 +32,33 @@ bool clearDisplay; //Determine whether or not to wipe the LCD screen before prin
 unsigned long lastButtonPress = 0; // Store last press time
 const unsigned long buttonDebounce = 300; // Debounce time
 
+// Variables for password
+const int MAX_INDEX = 4; // Used for loops aswell
+int currentIndexOfAttempt; // Keep track of what index is being stored in password attempt
+bool createPassword; // Not used 
+char storedKey; // Store key from keypad
+const char presetPassword[MAX_INDEX] = {'1','3','3','7'}; // Preset password
+char passwordAttempt[MAX_INDEX]; // Variable for comparing with preset password
+int wrongPassword;
+
+// Keypad initialization
+unsigned long timerStart = 0;
+
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+
+byte rowPins[ROWS] = {13, A5, A4, A3}; // Connect to the row pinouts of the keypad
+byte colPins[COLS] = {A2, A1, A0, 0}; // Connect to the column pinouts of the keypad
+// Keypad object
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+
 unsigned lastLEDBlink = 0;
 
 // Flag for tracking if alarm is active
@@ -56,6 +84,11 @@ void checkButtonState();
 void handleButtonPress();
 void handleBlinkingLED();
 
+// Password / keypad functions
+char getStoredKey();
+void createPasswordAttempt();
+bool comparePassword(char* attempt);
+
 void setup()
 {
   Serial.begin(9600);
@@ -76,7 +109,7 @@ void setup()
 
 void loop()
 {
-
+  getStoredKey(); // Check key presses 
   checkButtonState();  // Always check for button press
 
   // Wait until PIR sensor resets to LOW after alarm mode is activated
@@ -223,21 +256,108 @@ void handleButtonPress() {
       digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
     }
   }
-
 }
 
 void alarmDeactivated() 
 {
-  
   noTone(BUZZER); // Stop the buzzer
   writeToLCD("Alarm", 0);
   writeToLCD("deactivated", 1);
   Serial.println("Alarm deactivated.");
-  sensorState = false; // Reset motion sensor
+  sensorState = false;// Reset motion sensor
   alarmMode = false;
   switchLED(GREEN_LED); // Set LED status
   //digitalWrite(RED_LED, LOW); // Ensure RED_LED is off
   //digitalWrite(GREEN_LED, HIGH); // Ensure GREEN_LED is on
-
+  
   buttonState = false;
+}
+char getStoredKey()
+{
+  // Read from keyPad object.
+  storedKey = keypad.getKey();
+  
+  // Press asterix to activate password input
+  if (storedKey == '*')
+  {
+    createPasswordAttempt();
+  }
+  // Return key only if it is pressed
+  if (storedKey){
+    return storedKey;
+  }
+}
+
+bool comparePassword(char* attempt)
+{ 
+  // Return false if any index is wrong.
+  for (int i = 0; i < MAX_INDEX; i++)
+  {
+    if (attempt[i] != presetPassword[i])
+  	{
+      return false;
+     
+    }
+  }
+  return true;
+}
+
+void createPasswordAttempt()
+{ 
+  // Reset index to 0
+  currentIndexOfAttempt = 0;
+  wrongPassword = 0;
+  
+  // STOP THE ALARM WAIT FOR INPUT?
+  // Timer when entering function 
+  unsigned long startTime = millis();
+  
+  Serial.println("You have 15s to enter correct password: ");
+  
+  // Loop until password is correct or 15s have run out.
+  while (currentIndexOfAttempt < MAX_INDEX && millis () - startTime <= 15000)
+  {
+    // Store the newKey inside this loop
+    char newKey = getStoredKey();
+    
+    if (startTime == 14999)
+    {
+		Serial.println("SOUND THE ALARM!");
+    }
+    // Keep the loop going
+    if (currentIndexOfAttempt < MAX_INDEX)
+    {
+      // assign newKey to passwordAttempt
+      passwordAttempt[currentIndexOfAttempt] = newKey;
+    	
+      if (newKey)
+      {
+        Serial.println(newKey);
+        currentIndexOfAttempt++;
+        
+        // Compares the password attempt
+        if (currentIndexOfAttempt == MAX_INDEX)
+        {
+          Serial.println("Checking password....");
+
+          if (comparePassword(passwordAttempt))
+          {
+            // Run code here if password true
+            alarmDeactivated();
+            alarmActive = false;
+            writeToLCD("Password", 0,true);
+            writeToLCD(" correct", 1);
+            break;
+          }
+          else
+          {
+            alarmRinging();
+            writeToLCD("Password", 0,true);
+            writeToLCD(" incorrect", 1);
+            break;
+          }
+        }
+      }
+    }
+  }
 }
