@@ -2,6 +2,15 @@
 
 ### **[Components](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/tree/dev-bubba/94?tab=readme-ov-file#potential-extensions-if-time-and-resources-are-available)** needed before you start
 
+## The tinkerCAD sketch for V1 of the SAFE-AlarmSystem project.
+
+    ![view Safe_AlarmSystemV1.png](tools/SAFE_Alarm_System_v1.png)
+
+### Create your own copy of the sketch
+
+If you want to take a closer look, or simply test, play around or make a copy of the TinkerCAD sketch, click on the link below.
+[SAFE_AlarmSystemV1](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)
+
 1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen
