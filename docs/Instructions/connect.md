@@ -28,6 +28,45 @@ Keep in mind that the wiring and sensitivity of the components you have compared
 * Pay close attention to which pin is connect to which component in the sketch, make sure that they match your physical wiring. 
 * To make it easier to keep track of the wiring and the components, we advise you to stick as closely to the sketch as possible. However, if you need the space, or can still easily keep track of the wires and components. Feel free to place them wherever you wish, as long as the wiring matches the sketch. 
 
+### List of components and respective wiring. 
+
+comprehensive list of wiring.
+
+#### Buzzer
+1. Connect one side of the buzzer to D9 on the Arduino.
+2. Connect the other side to ground with a resistor, the strength of the resistor depends on your desired sound level. We recommend you start with a resistor with a high Ohm before moving to a lower one.
+
+#### LCD display
+1. Connect GND from the display to Arduino GND.
+2. Connect VCC to 5V.
+3. Connect VO/Contrast to ground.
+4. Connect RS (Register Select) to D11 on the Arduino.
+5. Connect R/W (Read/Write) to GND.
+6. Connect E (Enable) to D12 on the Arduino.
+7. Connect DB4 on the display to D2 on the Arduino.
+8. Connect DB5 on the display to D3 on the Arduino.
+9. Connect DB6 on the display to D4 on the Arduino.
+10. Connect DB7 on the display to D5 on the Arduino.
+11. Connect LED anode on the display to 5V through a 1k Ohm Resistor.
+12. Connext LED Cathode on the display to GND.
+
+#### PIR (Passive Infrared ) sensor
+1. Connect the Signal/OUT to D6 on the Arduino.
+2. Connect Power to 5V.
+3. Connext Ground to GND.
+
+#### RGB-LED
+1. Connect the leg controlling the red LED through a suitable resistor to D7 on the Arduino.
+2. Connect the leg controlling the green LED through a suitable resistor to D8 on the Arduino.
+3. Connect the common cathode to GND.
+
+#### Button 
+1. One leg to D10 on the Arduino.
+2. Connect the leg opposite vertically to GND through a 10k Ohm resistor.
+3. The leg horizontally from the grounded leg is connected to 5V.
+
+
+
 1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen
