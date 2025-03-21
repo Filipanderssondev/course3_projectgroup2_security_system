@@ -46,17 +46,18 @@ Follow these instructions to build a complete prototype.
 ____  
 ### Safety requirements:  
 (To be defined based on project scope and implementation)
-###  ✅ System Requirements – SAFE Security System
 ____  
-###  🔧 Hardware
+###  System Requirements – SAFE Security System
 ____  
-### 🧠 Microcontroller:
+###  Hardware
+____  
+### Microcontroller:
 - **Arduino Uno** or compatible board.
 - Minimum **13 digital I/O pins** (9 used: pins 2–12).
 - **RAM:** 2 KB is sufficient.
 - **Flash memory:** Approximately 5–10 KB used (Uno has 32 KB – more than enough).
 ____  
-### 📦 Required Components:
+### Required Components:
 | **Component**   | **Pin(s)** | **Description** |
 |----------------|------------|-----------------|
 | **LCD Display (16x2)** | RS (11), E (12), D4 (2), D5 (3), D6 (4), D7 (5) | Displays system messages |
@@ -66,17 +67,17 @@ ____
 | **Red LED** | Pin 7 | Blinks when alarm is triggered |
 | **Green LED** | Pin 8 | Indicates system is active and in standby mode |
 ____  
-### 🔌 Power Supply:
+###  Power Supply:
 - **5V** via USB or an external power source (e.g. 9V adapter).
 ____  
 
-## 💻 Software
+## Software
 ____  
 ### Requirements:
 - **Arduino IDE** (version 1.8.x or higher recommended)
 - **LiquidCrystal Library** (included by default in Arduino IDE)
 ____  
-## 📌 Notes:
+##  Notes:
 - This code is designed for **entry-level Arduino boards** like the **Uno or Nano**.
 - It does **not require additional memory** or advanced features.
 - All functionality fits well within the **limitations of the Arduino Uno**.
