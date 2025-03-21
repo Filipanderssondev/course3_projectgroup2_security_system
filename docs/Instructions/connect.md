@@ -2,6 +2,32 @@
 
 ### **[Components](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/tree/dev-bubba/94?tab=readme-ov-file#potential-extensions-if-time-and-resources-are-available)** needed before you start
 
+## The tinkerCAD sketch for V1 of the SAFE-AlarmSystem project.
+
+    ![view Safe_AlarmSystemV1.png](tools/SAFE_Alarm_System_v1.png)
+
+### Create your own copy of the sketch
+
+If you want to take a closer look, or simply test, play around or make a copy of the TinkerCAD sketch, click on the link below.
+[SAFE_AlarmSystemV1](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)
+
+## Wiring the Arduino.
+1. Start by looking through the component-list linked at the top of the document.
+For a quick reminder, the components needed are the following.
+* One Arduino Uno R4 Wifi or other compatible controller
+* One breadboard
+* One buzzer
+* One LCD display
+* One passive infrared sensor
+* One pushbutton.
+* One RGB-LED (can be replaced by a red and green LED).
+
+Keep in mind that the wiring and sensitivity of the components you have compared to the ones available in TinkerCad or used by us while assembling the project may differ slightly or greatly. Before you proceed we strongly recommend that you consult the ***datasheets*** or ***instructions*** for your own components and adapt the wiring accordingly.
+
+2. Connecting the components.
+* Pay close attention to which pin is connect to which component in the sketch, make sure that they match your physical wiring. 
+* To make it easier to keep track of the wiring and the components, we advise you to stick as closely to the sketch as possible. However, if you need the space, or can still easily keep track of the wires and components. Feel free to place them wherever you wish, as long as the wiring matches the sketch. 
+
 1. Start by connecting arduino pins accordingly **(preferably connect on TinkerCAD first to prevent damages on components)**  
 ```cpp
 // Library for LCD Screen

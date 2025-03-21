@@ -8,7 +8,7 @@ ________________
 **Links that we have used during the construction of our prototype**  
 ### [Kanban](https://github.com/users/Filipanderssondev/projects/6)
 
-### [TinkerCAD](https://www.tinkercad.com/things/hkzwk208qim-testing-safealarmsystemino/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=D0tnPiXF99BZVIktJoVi4gTVeHDah8EVGiA-xL8jnsk)   
+### [TinkerCAD](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)   
 _____________
 ### Overview:  
 Develop a security alarm system that detects motion using an infrared sensor. The alarm system consists of the following components:   
@@ -22,11 +22,11 @@ _________
 ### Components (no extensions included): 
 * One ***Arduino Uno R4 Wifi*** or other compatible controller  
 * One ***breadboard***   
-* One ***Peizo buzzer***      
+* One ***buzzer***      
 * One ***LCD display***
-* One ***HC-SR501*** infrared sensor  
+* One ***infrared sensor**  
 * One ***pushbutton***  
-* One ***RGB-LED***
+* One ***RGB-LED*** (can be replaced by a ***red*** and ***green LED***)
 ____  
 
 ### Potential extensions (if time and resources are available):  
