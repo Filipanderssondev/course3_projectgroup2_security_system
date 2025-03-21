@@ -18,8 +18,8 @@ course3_projectgroup2_security_system/
 │       └── manual.md
 │   
 ├── src/
-│   └── SAFE_AlarmSystem/
-│       └── Safe_AlarmSystem.ino
+│   └── SAFE_AlarmSystem_V1/
+│       └── SAFE_AlarmSystem_V1.ino
 │
 ├── tools/
 │   ├── Saf.png
