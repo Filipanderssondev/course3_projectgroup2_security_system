@@ -22,11 +22,11 @@ _________
 ### Components (no extensions included): 
 * One ***Arduino Uno R4 Wifi*** or other compatible controller  
 * One ***breadboard***   
-* One ***Peizo buzzer***      
+* One ***buzzer***      
 * One ***LCD display***
-* One ***HC-SR501*** infrared sensor  
+* One ***infrared sensor**  
 * One ***pushbutton***  
-* One ***RGB-LED***
+* One ***RGB-LED*** (can be replaced by a ***red*** and ***green LED***)
 ____  
 
 ### Potential extensions (if time and resources are available):  
