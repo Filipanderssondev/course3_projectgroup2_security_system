@@ -35,7 +35,9 @@ ________________
 **Links that we have used during the construction of our prototype**  
 ### [Kanban/Project Board](https://github.com/users/Filipanderssondev/projects/6)
 
-### [TinkerCAD sketch](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)   
+### [TinkerCAD sketch](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)
+
+### [Presentation](https://docs.google.com/presentation/d/1GJ6qkd4BoipNbu-YwykglVW6joUa5U7s7zz9XB9dR1s/edit?pli=1#slide=id.g3426ffd8a82_4_5)
 _____________
 ### Overview:  
 Develop a security alarm system that detects motion using an infrared sensor. The alarm system consists of the following components:   
