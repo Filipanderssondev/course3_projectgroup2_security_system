@@ -1,8 +1,6 @@
 # How to connect the device
 
-### **[Components](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/tree/dev-bubba/94?tab=readme-ov-file#potential-extensions-if-time-and-resources-are-available)** needed before you start
-
-## The tinkerCAD sketch for V1 of the SAFE-AlarmSystem project.
+### TinkerCAD sketch for V.1 SAFE-AlarmSystem project.
 
 ![view Safe_AlarmSystemV1.png](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/SAFE_Alarm_System_v1.png?raw=true)
 
@@ -13,7 +11,7 @@ If you want to take a closer look, test, play around or  simply make a copy of t
 
 ## Wiring the Arduino.
 1. Start by looking through the component-list linked at the top of the document.  
-**Components needed are following:** 
+**[Components](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/tree/dev-bubba/94?tab=readme-ov-file#potential-extensions-if-time-and-resources-are-available) needed are following:** 
     - One Arduino Uno R4 Wifi or other compatible controller
     - One breadboard
     - One buzzer
