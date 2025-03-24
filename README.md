@@ -58,9 +58,10 @@ ____
 
 ### Potential extensions (if time and resources are available):  
 
-- [ ] Replace pushbuttons with a keypad for code entry.  
+- [ ] Replace pushbuttons with a keypad for code entry.
+- [ ] Replace current LCD display with a LCD I2C-display 
 - [ ] Enable admin access to change the personal password.
-- [ ] Introduce the usage of a servo component.
+- [ ] Expand with servo function (door latch).
 - [ ] Expand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
 
 ______
