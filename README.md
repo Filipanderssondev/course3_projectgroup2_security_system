@@ -1,14 +1,43 @@
-# <p align="center"> SAFE - Security system  
+# <p align="center"> SAFE - Security system </p>
 Project Group 2 - Course 3  
 Assignment to summarize our third course and prepare for the next.  
 **Contributors:** [Sabina](https://github.com/binasime), [Alexander](https://github.com/alexanderchasacademy), [Filip](https://github.com/Filipanderssondev),  [Jacob](https://github.com/jalis00), [Johan](https://github.com/bubba-94)  
 
 ![SAFE Security system](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/SAF.png)  
+
+### File tree/Structure:
+```
+course3_projectgroup2_security_system/
+├── docs/
+│   ├── Assignment/
+│   │   └── Projectassignment.pdf
+│   ├── Functionality/
+│   │   └── Variable & function-list.md
+│   └── Instructions/
+│       ├── Arduino_IDE.md
+│       ├── connect.md
+│       └── manual.md
+│   
+├── src/
+│   └── SAFE_AlarmSystem_V1/
+│       └── SAFE_AlarmSystem_V1.ino
+│
+├── tools/
+│   ├── Saf.png
+│   ├── SAFE_Alarm_System_V1.png
+│   └── SAFE_Alarm_System_V1_Schematic.pdf
+│
+└── README.md 
+```
+
+
 ________________
 **Links that we have used during the construction of our prototype**  
-### [Kanban Board](https://github.com/users/Filipanderssondev/projects/6)
+### [Kanban/Project Board](https://github.com/users/Filipanderssondev/projects/6)
 
-### [TinkerCAD sketch](https://www.tinkercad.com/things/hkzwk208qim-testing-safealarmsystemino/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard&sharecode=D0tnPiXF99BZVIktJoVi4gTVeHDah8EVGiA-xL8jnsk)   
+### [TinkerCAD sketch](https://www.tinkercad.com/things/2IvXT1tnwTr-safe-alarm-system-v10?sharecode=3K8oA0UX7hQ530EvdRRKtiQOKeserKk2IRnFxNyzCII)
+
+### [Presentation](https://docs.google.com/presentation/d/1GJ6qkd4BoipNbu-YwykglVW6joUa5U7s7zz9XB9dR1s/edit?pli=1#slide=id.g3426ffd8a82_4_5)
 _____________
 ### Overview:  
 Develop a security alarm system that detects motion using an infrared sensor. The alarm system consists of the following components:   
@@ -22,27 +51,55 @@ _________
 ### Components (no extensions included): 
 * One ***Arduino Uno R4 Wifi*** or other compatible controller  
 * One ***breadboard***   
-* One ***Peizo buzzer***      
+* One ***buzzer***      
 * One ***LCD display***
-* One ***HC-SR501*** infrared sensor  
+* One ***infrared sensor**  
 * One ***pushbutton***  
-* One ***RGB-LED***
+* One ***RGB-LED*** (can be replaced by a ***red*** and ***green LED***)
 ____  
 
 ### Potential extensions (if time and resources are available):  
 
-- [ ] Replace pushbuttons with a keypad for code entry.  
+- [ ] Replace pushbuttons with a keypad for code entry.
+- [ ] Replace current LCD display with a LCD I2C-display 
 - [ ] Enable admin access to change the personal password.
-- [ ] Introduce the usage of a servo component.
+- [ ] Expand with servo function (door latch).
 - [ ] Expand the alarm with diffrent sensors for example ultrasound or vibrationdetector.  
 
 ______
 ### Instructions for usage:  
 Follow these instructions to build a complete prototype.
-1. Connect the hardware. [Link for instructions to connect physical hardware](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/connect.md)
-2. Build code using **C++/Arduino IDE**. [Link to source code]()
-3. Schematics. [Click here](From Alexanders TinkerCAD)
-4. Manual for completed prototype. [How to use the device](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/manual.md)
-   
-### Safety requirements:  
-(To be defined based on project scope and implementation)
+1. Connect the hardware. [Link to instructions to connect physical hardware](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/connect.md)
+2. Build code using **C++/Arduino IDE**. [Link to source code](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/src/SAFE_AlarmSystem/SAFE_AlarmSystem.ino)
+3. Schematics for prototype. [Link to schematics](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/tools/TESTING%20SAFE_AlarmSystem.ino.pdf)
+4. Manual for completed prototype. [How to use the device](https://github.com/Filipanderssondev/course3_projectgroup2_security_system/blob/main/docs/Instructions/manual.md)
+____  
+
+- ## System Requirements – SAFE Security System   
+  - ### Hardware   
+    - Microcontroller:
+    - **Arduino Uno** or compatible board.
+    - Minimum **13 digital I/O pins** (9 used: pins 2–12).
+    - **RAM:** 2 KB is sufficient.
+    - **Flash memory:** Approximately 5–10 KB used (Uno has 32 KB – more than enough).
+  - #### Required Components:
+    | **Component**   | **Pin(s)** | **Description** |
+    |----------------|------------|-----------------|
+    | **LCD Display (16x2)** | RS (11), E (12), D4 (2), D5 (3), D6 (4), D7 (5) | Displays system messages |
+    | **PIR Motion Sensor** | Pin 6 | Detects motion |
+    | **Pushbutton** | Pin 10 | Turns alarm mode ON/OFF and stops the alarm |
+    | **Buzzer** | Pin 9 | Sounds when motion is detected |
+    | **Red LED** | Pin 7 | Blinks when alarm is triggered |
+    | **Green LED** | Pin 8 | Indicates system is active and in standby mode |
+    - Power Supply:
+      - **5V** via USB or an external power source (e.g. 9V adapter).
+- ### Software
+    - #### Requirements:
+      - **Arduino IDE** (version 1.8.x or higher recommended)
+      - **LiquidCrystal Library** (included by default in Arduino IDE)
+      
+- ### General notes:
+    - This code is designed for **entry-level Arduino boards** like the **Uno or Nano**.
+    - It does **not require additional memory** or advanced features.
+    - All functionality fits well within the **limitations of the Arduino Uno**.
+    - All components used are **commonly available in be**
